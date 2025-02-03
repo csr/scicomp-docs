@@ -14,18 +14,17 @@ for Research page
    linux
    mac
    windows
-   aaltostorage
-   aaltodata
-   datapolicy
-   remoteaccess
-   jupyterhub
-   remotejupyter
-   paniikki
-   htcondor
-   git
-   python
-   opensource
-   matlab_standalone
-   overleaf
    coderefinery-setup
+   cslinux
+   remoteaccess
+   git
+   aaltoharbor
+   jupyterhub
+   llm-web-apis
+   matlab_standalone
+   opensource
+   overleaf
+   paniikki
+   python
+   remotejupyter
    zulip

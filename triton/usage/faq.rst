@@ -52,6 +52,26 @@ Job status and submission
 
       #SBATCH --no-requeue
 
+.. collapse:: Why are my jobs in state "PENDING" with "BadConstraints" when it seems constraints are OK.
+
+   This happens when a job is submitted to multiple partitions (this
+   is the default: it tries to go to partitions of all node types) and
+   it is BadConstraints for *some* partitions.  Then, it gives the
+   BadConstraints reason for the whole job, even though it will
+   eventually run.  (If constraints are bad in all partitions, it will
+   usually fail right when you are trying to submit it, something like
+   ``sbatch: error: Batch job submission failed: Requested node
+   configuration is not available``).
+
+   You don't need to do anything, but if you want a clean status: you
+   can get rid of this message by limiting to partitions that
+   actually satisfy the constraints.  For example, if you request 96
+   CPUs, you can limit to the Milan nodes with ``-p batch-milan``
+   since those are tho only nodes with more than 40 CPUs.  This
+   example is valid as of 2023, if you are reading this later you need
+   to figure out what the current state is (or ask us).
+
+
 .. collapse::  How can I find out the remaining runtime of my job/allocation?
 
   You can find out the remaining time of any job that is running with
@@ -91,7 +111,7 @@ Job status and submission
 .. collapse:: ``srun: error: Unable to allocate resources: Requested node configuration is not available``
 
    You have requested some Slurm options which do not include any
-   nodes (for example, asking for a GPU with ``--gres=gpu`` and a
+   nodes (for example, asking for a GPU with ``--gpus=TYPE:N`` and a
    partition without GPUs).  Figure out what the problem is and adjust
    your Slurm options.
 
@@ -108,6 +128,18 @@ Job status and submission
 
 Accounts and Access to triton
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. collapse:: Mac users ...  invalid byte issue at login
+
+  Mac users may experience a login issue when logining with SSH or to https://ondemand.triton.aalto.fi
+  due to a locale settings on the local laptop/desktop. A workaround would be to tell Terminal to *not* set
+  the locale environment variables, by *turning off* this setting in the Terminal app:
+
+    Terminal > Preferences > Settings > [profile] > Advanced > Set locale environment variables on startup
+
+  Additionally check System Preferences > Language and Text  to make sure the settings are correct, the default
+  should be ``LANG=C.UTF-8`` or alike and not anything that ends with the ASCII.
+
 
 .. collapse::  Invalid account ... error message
 
@@ -191,7 +223,7 @@ Accounts and Access to triton
 
       $ sftp user1@triton.aalto.fi:/triton/path/to/dir/* .
 
-  .. _faq-connecttoserveronnode:
+.. _faq-connecttoserveronnode:
 
 .. collapse::  I need to connect to some server on a node
 
@@ -297,7 +329,7 @@ Storage, file transfer and quota
 
   Most likely your Kerberos ticket has expired. If you log in with a
   password or use 'kinit', you can get an another ticket. See page on
-  `data storage <../tut/storage>` for more information.
+  :doc:`data storage <../tut/storage>` and :doc:`remote data <../tut/remotedata>` for more information.
 
 .. collapse::  How can I copy Triton files from outside of Aalto?
 
@@ -402,7 +434,22 @@ Command line interface
   recommendations given at the last section at :doc:`Data storage on the Lustre
   file system <lustre>`
 
+.. collapse::  When ssh:ing, I get some LC_ALL error all the time
 
+  This happens because your computer is sending the "locale"
+  information (language, number format, etc) to the other computer
+  (Triton), but Triton doesn't know the one on your computer.  You can
+  unset/adjust all the ``LC_*`` and/or ``LOCALE`` environment
+  variables, or in your ``.ssh/config``, try setting the following in
+  your Triton section (see :doc:`/scicomp/ssh` for info on how this
+  works, you need more than you see here)::
+
+     Host triton
+         SendEnv LC_ALL=C
+
+  ``env | grep LC_`` and ``env | grep LANG`` might give you hints
+  about exactly what environment variables are being sent from your
+  computer (and thus you should override in the ssh config file).
 
 
 .. _FAQ_Modules:
@@ -484,6 +531,8 @@ Coding and Compiling
   FGI provides all FGI sites with 7 Intel licenses, thus only 7 users can
   compile/link with Intel at once.
 
+
+
 .. collapse::  Code is compiled with shared libraries and it stops with an error message: ``error while loading shared libraries: libsome.so: cannot open shared object file: No such file or directory``
 
   That means your program can't find libraries which has been used at
@@ -535,6 +584,75 @@ Coding and Compiling
 
       ldconfig -p # print the list of system-wide available shared libraries
 
+
+.. collapse:: ``version GLIBC_2.29 not found`` (or ``GLIBCXX_3.4.26``, or ``LIBCSTDCXX_version``) when running some program.
+
+   Background: Compiled code has dynamic libraries.  When a program
+   runs, it needs to load that code.  The code embeds the name of the
+   library like ``libc.so.6`` and then when it runs, it uses built-in
+   paths (``/etc/ld.so.conf``) and the ``LD_LIBRARY_PATH`` environment
+   variable.  It takes the first thing it finds and loads it.
+
+   In all of these cases, they work in the fine line between the
+   operating system, software we have installed, and software you have
+   installed.  Have a very low threshold to ask for :doc:`help
+   </help/index>` by coming to our :doc:`daily garage </help/garage>`
+   with your problem.  We might have a much easier solution much
+   faster than you con figure out.
+
+   **Problem 1: Library not found**: In this case, something expects a
+   certain library, but it can't be found.  Possible solutions could
+   include:
+
+   * Loading a module that provides the library (did you have a module
+     loaded when you compiled the code?  Are you installing a Python/R
+     extension that needs a library from outside?)
+
+   * Setting the ``LD_LIBRARY_PATH`` variable to point to the
+     library.  If you have self-complied things this might be
+     appropriate, but it might also be a sign that something else is
+     wrong.
+
+   **Problem 2: library version not found** (such as ``GLIBC_2.29 not
+   found``): This usually means that it's finding a library, loading
+   it, but the version is too old.  This especially happens on
+   clusters, where the operating system can't change that often.
+
+   * If it's about ``GLIBCXX_version``, and you can ``module load
+     gcc`` of a proper version, or if you are in a conda environment,
+     install the ``gcc`` package to bring.
+
+   * If it's about ``GLIBC``, then it's about the base C library
+     ``libc``, and that is very hard to solve, since this is
+     intrinsically connected to the operating system.  Likely, the
+     program is compiled on an operating system too new for the
+     cluster and you'd think about re-compiling on the cluster,
+     putting it in a container.
+
+   * Setting ``LD_LIBRARY_PATH`` might help to direct to a proper
+     version.  Again, this probably indicates some other problem.
+
+   **Problem 3: you think you have the newer library loaded by a
+   module or something, but it's still giving a version error**: This
+   has sometimes happened with programs that use extensions.  The base
+   program uses is older version of the library, but an extension
+   needs a newer version.  Since the base program has already loaded
+   an older version, even specifying the new version via
+   ``LD_LIBRARY_PATH`` doesn't help much.
+
+   * Solution: this is tricky, since the program should be using the
+     never version if it's on ``LD_LIBRARY_PATH`` already.  Maybe it's
+     hard-coded to use a particular older version?  In this case,
+     since it's hard-coded to an old version, maybe you need a newer
+     version of the base program itself (an example of this was an R
+     extension that expected a newer ``GLIBCXX_version``: the answer
+     was to build Triton's R module with a newer ``gcc`` compiler
+     version).  If you get this case, you should be asking us to take
+     a look.
+
+
+
+
 .. collapse::  While compiling should I use static or shared version of some library?
 
   One can use both, though for shared libs all your linked libs must be
@@ -555,7 +673,8 @@ Coding and Compiling
   it displays the type of an executable or object file.
 
 
-  .. _FAQ_Other:
+
+.. _FAQ_Other:
 
 Other issues
 ^^^^^^^^^^^^ 
@@ -605,3 +724,11 @@ Other issues
   ::
 
       $ scontrol show node cn[01-12]
+
+
+.. collapse:: Can't run graphical applications on nodes and "Warning: untrusted X11 forwarding setup failed: xauth key data not generated"
+
+   Check your ``.bashrc`` and other startup files.  Some modules bring
+   in so many dependencies that it can interfere with standard
+   operating system functions: in this case, SSH setting up X11
+   forwarding for graphical applications.

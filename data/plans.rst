@@ -70,7 +70,7 @@ As some concrete suggestions:
 * For data storage considerations, you can say that your
   department/Science-IT provides data storage services (for Science-IT
   departments) and has a data storage policy which you will follow:
-  :doc:`citation <outline>` and/or :doc:`full text <datapolicy>`.
+  :doc:`citation <outline>` and/or :doc:`full text <science-it-data-policy>`.
 
 
 .. _dmp-emergency:
@@ -83,7 +83,7 @@ If you are reading this, you probably have a grant deadline and you
 need to do something *right now*.  Use the resources above, but here
 is some more advice:
 
-* Read the :doc:`data management outline <../aalto/aaltodata>` on this
+* Read the :doc:`data management outline <principles>` on this
   site.  You should be able to pull many of the practical pieces
   (storage, confidentiality, archiving, etc) from here.  **Read this
   first!**.
@@ -103,7 +103,7 @@ is some more advice:
   nice form.
 
   * If you don't like the idea of a web form, the `templates seem to be
-    available publically <dmptuuli_templates_>`_, too.  These seem to
+    available publicly <dmptuuli_templates_>`_, too.  These seem to
     have roughly the info as the DMPTuuli web forms.
 
 .. _aalto_rdm_plans: https://www.aalto.fi/en/services/data-management-plan-dmp
@@ -148,8 +148,8 @@ make a plan that contains everything *you* need to know personally.:
 * For storage, organization, confidentiality, etc, you can say you
   will follow the Science-IT data management policy.  This isn't
   requirements for you, but the default services we offer for data
-  storage (designed to keep data safe and secure, and uuushareable).  It
-  also sounds good to say.  (see the :doc:`outline <../aalto/aaltodata>`)
+  storage (designed to keep data safe and secure, and shareable).  It
+  also sounds good to say.  (see the :doc:`outline <principles>`)
 
 
 Model Academy of Finland DMP
@@ -162,7 +162,7 @@ Aalto correspondences are.  You can also see the `Aalto guidelines
 <ardm_plan_>`_, but this is also a bit abstract to be immediately
 usable.
 
-.. _oafg: https://www.aka.fi/en/funding/apply-for-funding/az-index-of-application-guidelines/data-management-plan/data-management-plan/
+.. _oafg: https://www.aka.fi/en/research-funding/apply-for-funding/how-to-apply-for-funding/az-index-of-application-guidelines2/data-management-plan/data-management-plan/
 
 .. _ardm_plan: https://www.aalto.fi/en/services/data-management-plan-dmp
 
@@ -229,7 +229,7 @@ something useful, too.
 4. Storage and backup during the research project.
 
    - Aalto really excels here.  Basically, just use the :doc:`Aalto
-     network drives <../aalto/aaltodata>`.  This storage is large,
+     network drives <aalto-details>`.  This storage is large,
      free, shareable, snapshotted, backed up to an offsite
      datacenter.  Access is controlled via Aalto accounts plus unix
      groups.  If people need to make other copies (and it's allowed

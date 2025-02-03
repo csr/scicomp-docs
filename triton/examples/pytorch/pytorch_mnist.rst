@@ -9,12 +9,14 @@ Let's run the MNIST example from
    :language: python
 
 The full code for the example is in
-:download:`tensorflow_mnist.py</triton/examples/pytorch/pytorch_mnist.py>`.
-One can run this example with ``srun``::
+:download:`pytorch_mnist.py</triton/examples/pytorch/pytorch_mnist.py>`.
+One can run this example with ``srun``:
 
-  wget https://raw.githubusercontent.com/AaltoSciComp/scicomp-docs/master/triton/examples/pytorch/pytorch_mnist.py
-  module load anaconda
-  srun --time=00:15:00 --gres=gpu:1 python pytorch_mnist.py
+.. code-block:: console
+
+  $ wget https://raw.githubusercontent.com/AaltoSciComp/scicomp-docs/master/triton/examples/pytorch/pytorch_mnist.py
+  $ module load scicomp-python-env
+  $ srun --time=00:15:00 --gres=gpu:1 python pytorch_mnist.py
 
 or with ``sbatch`` by submitting
 :download:`pytorch_mnist.sh</triton/examples/pytorch/pytorch_mnist.sh>`:

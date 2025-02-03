@@ -1,6 +1,11 @@
 Requesting a course
 ===================
 
+.. note::
+    `JupyterLab <https://jupyterlab.readthedocs.io/en/stable/>`__ interface
+    is now available and is the default option for new course servers.
+    If you'd still like to use the Jupyter Notebook interface for your
+    course, let us know.
 
 To get started with a course, please read the below list and describe
 your needs from the relevant items, and contact guru@cs.aalto.fi.
@@ -27,11 +32,13 @@ Request template
 
 To make things faster and more complete, copy and paste the below in
 your email to us (guru@cs.aalto.fi), and edit all of fields (and if anything unclear,
-don't worry: send it and a human will figure it out).  The format is
+don't worry: send it and a human will figure it out), and send it to
+us with any other comments.  The format is
 YAML, by the way (but we can handle the syntax details).
 
 .. code-block:: yaml
 
+   ---
    name: CS-E0000 Course Name (Year)
    uid: (leave blank, we fill in)
    gid: (leave blank, we fill in)
@@ -40,6 +47,8 @@ YAML, by the way (but we can handle the syntax details).
    # contacts = primary TAs which should also get emails from us.
    # manager = (optional) has rights to add other TAs via
    #           domesti.cs.aalto.fi (supervisor is always a manager)
+   # Please separately tell us who the initial TAs are!  Managers can
+   # add more later via domesti.cs.aalto.fi.
    supervisor: teacher.in.charge@aalto.fi
    contact: [teacher.in.charge@aalto.fi, head.ta@aalto.fi]
    #manager: [can_add.tas@aalto.fi]
@@ -48,16 +57,16 @@ YAML, by the way (but we can handle the syntax details).
    datadir: false
 
    # Important dates.  But not too important, we can always adjust later.
-   public_date:  2020-09-08      # becomes visible to students before course
-   private_date: 2021-01-31      # hidden from students after course
-   archive_date: 2021-09-01      # becomes hidden from instructors
-   delete_date:  2021-09-01      # after this, we ask if it can be deleted
+   # So far, you need to email us to make it public when you are ready!
+   public_date: 2020-09-08   # becomes visible to students before course
+   private_date: 2021-01-31  # hidden from students after course
+   archive_date: 2021-09-01  # becomes hidden from instructors
+   delete_date: 2021-09-01   # after this, we ask if it can be deleted
 
    # For the course dates itself (just for our reference, not too important)
    start_date: 2020-10-01
    end_date: 2020-12-15
-   course_times: EXAMPLE, fill in: Exercise sessions Tuesday afternoons, Deadlines Fridays at 18
-
+   course_times: "EXAMPLE, fill in: Exercise sessions Tuesday afternoons, Deadlines Fridays at 18"
 
    # The dates above actually aren't used.  These control visibility:
    private: true
@@ -104,7 +113,7 @@ Required metadata is:
      * Long-term staff who can answer questions about old data even if
        the course TAs move on.  Might be same as contact.  This is the
        "primary owner" of all data according to the :doc:`Science-IT
-       data policy </aalto/datapolicy>`.
+       data policy </data/science-it-data-policy>`.
 
    * * 5. Instructors
      * Who will have access to the instructor data?  Instructors will

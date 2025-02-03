@@ -44,7 +44,7 @@ Instructions/hints
   <course-data>` your :doc:`course data <../jupyterhub-data>`.
 
 - The course directory is stored according to the :doc:`Science-IT
-  data policy </aalto/datapolicy>`.  In short, all data is stored in group
+  data policy </data/science-it-data-policy>`.  In short, all data is stored in group
   directories (for these purposes, the course is a group).  The
   instructor in change is the owner of the group: this does not mean
   they own all files, but are responsible for granting access and
@@ -127,6 +127,9 @@ Instructions/hints
 - A notebook can tell if it is in the hub environment if the
   ``AALTO_JUPYTERHUB`` environment variable is set.
 
+- A notebook can tell if it is being autograded by checking if
+  ``NBGRADER_VALIDATING`` is set.
+
 - You can install an identical version of nbgrader as we have using::
 
     pip install git+https://github.com/AaltoSciComp/nbgrader@live
@@ -169,3 +172,69 @@ FAQ
   actually not running, it will give you the option to restart it
   again.  If there are still network problems, you'll see an error
   message saying that.
+
+
+- **Gurobi** Gurobi has license issues, and it's not clear if it can
+  even be distributed by us.  So far, we only support open software.
+
+  But, courses have used gurobi before.  They had students install
+  themselves, in the Python environment, and somehow told it what
+  the Aalto license server was.  For examaple, using the magic of "!"
+  shell commands embedded in notebooks, it was something like this,
+  which would automatically install gurobi for students and set the
+  license file information.::
+
+     !conda install -c gurobi gurobi
+     !echo [license_file_information] > ~/.[license_file_path]
+
+- **I have done a test release/fetch/autograde of an assignment, and I
+  want to re-generate it.  It says I can't since there are already
+  grades**.  You also need to remove it from the database with the
+  following command.  Note that if students have already fetched, they
+  will need to re-fetch it so *don't do this if it's already in the
+  hands of the students* - you will only create chaos (see the point
+  below).
+
+  .. code-block:: console
+
+     $ nbgrader db assignment remove ASSIGNMENT-ID
+
+- **I have already released an assignment, and now I need to update it
+  and release it again.  Some students have already fetched it.**
+  This works easily if students haven't fetched it yet, if they have
+  it requires some manual work from them.
+
+  What you need to do: (make sure the old version is git-committed),
+  edit the source/ directory version, un-release the assignment,
+  generate it again, release the assignment again.  You might need to
+  force it to fetch the assignment again, if it has already been
+  fetched. (verify, TODO: let me know how you do this)
+
+  On the student side: After an assignment is fetched, it won't present
+  the option to fetch it again (that would lose their work).  Instead,
+  they need to move the fetched version to somewhere else, then
+  re-fetch.  You can send the following instructions to your students:
+
+     I have updated an assignment, and you will need to re-fetch it.  You
+     work won't be lost, but you will need to merge it into the new
+     versions.
+
+     * First, make sure you save everything and close the notebooks.
+     * Open a terminal in Jupyter
+     * Run the following commands to change to the course assignment
+       directory and move the assignment to a new place (``-old``
+       suffix on the directory name):
+
+       .. code-block:: console
+
+	  $ cd /notebooks/COURSE/
+	  $ mv ASSIGMENT_ID ASSIGNMENT_ID-old
+
+     * In the assignment list, it should now offer you to re-fetch the
+       assignment.
+     * You can now open both the new old old versions (but to open the
+       old version, you need to navigate to
+       ``/notebooks/COURSE/ASSIGNMENT_ID-old`` yourself to see it).
+     * If you have already submitted the assignment, submit again.
+       The old assignment is still submitted, but our fetching should
+       get the new one.

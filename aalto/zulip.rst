@@ -6,7 +6,14 @@ Zulip
    Instructors, see the relocated instructor page at
    :doc:`zulip/instructors`.
 
-Zulip is a open-source chat platform, which CS hosts at Aalto as a pilot.
+.. admonition:: Aalto Scicomp Zulip - researcher and staff discussion
+
+   If you are a researcher looking for the ASC chat for help and
+   support, see :ref:`the chat help section <chat>` or log in directly at
+   https://scicomp.zulip.cs.aalto.fi .
+
+
+Zulip is a open-source chat platform, which CS hosts at Aalto.
 It is used as a chat platform for some courses, and allows better
 student and chat privacy.
 
@@ -168,6 +175,12 @@ Other hints
   subscribed but not be notified of messages by default.  You can
   still find it if you click through the sidebar.
 
+- Since Zulip 8.0, you can mute/default/follow (receive notifications)
+  per-topic, for every topic (instead of only muting a topic).  This
+  is very powerful.  Note that you can change the default in your
+  Notification Settings: when a stream is automatically followed.  You
+  might want to adjust the default.
+
 - You can also request notifications for everything in a certain
   stream.  This could be good for announcement streams, or your
   particular projects.
@@ -198,8 +211,10 @@ We are aware of the following open issues:
 - It is annoying to have one chat instance per course (but it seems to
   be standard in chats these days).
 
-- There are no mobile Push notifications (since Aalto Security won't
-  let us turn them on).
+- There are no mobile push notifications (it would cost too much to
+  use the main Zulip servers, and we haven't decided to build our own
+  apps yet.  `info
+  <https://zulip.readthedocs.io/en/latest/production/mobile-push-notifications.html>`__).
 
 - Likewise with built-in video calls (via https://meet.jit.si or Zoom).
 

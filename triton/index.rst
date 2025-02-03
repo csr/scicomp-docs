@@ -1,3 +1,6 @@
+.. meta::
+   :keywords: Triton cluster, HPC, Aalto HPC, HPC tutorials
+
 ==============
 Triton cluster
 ==============
@@ -5,7 +8,8 @@ Triton cluster
 Triton is the Aalto high-performance computing cluster.  It serves all
 researchers
 of Aalto, but is currently coordinated from within the School of
-Science.  Access is free for researchers (students not doing research
+Science.  Access is free for researchers (see :doc:`accounts`,
+students not doing research
 should check out our :doc:`intro for students
 <../aalto/welcomestudents>`).  It is similar to the CSC
 clusters, though CSC clusters are larger and Triton is easier to use
@@ -20,60 +24,88 @@ Overview
 .. toctree::
    :maxdepth: 1
 
-   overview.rst
+   accounts.rst
    ref/index
    quickstart/index
    help.rst
-   accounts.rst
    usage/faq.rst
+   overview.rst
    usagepolicy.rst
    acknowledgingtriton.rst
 
 
+
+.. _tutorials:
+
 Tutorials
 =========
-These are designed to be read (or `watched <tutorial-playlist_>`__) in-order by every Triton user when they
+
+.. include:: /triton/ref/videos.rst
+
+These are designed to be read in-order by every Triton user when they
 get their accounts (except maybe the last ones).  In order to use
 Triton well, in the `Hands-on SciComp roadmap <hosc_>`__ you should
 also know the `Basics (A) <hosc-a_>`__ and `Linux (C) <hosc-c_>`__
 levels as a prerequisite.
 
-.. _tutorial-playlist: https://www.youtube.com/playlist?list=PLZLVmS9rf3nN_tMPgqoUQac9bTjZw8JYc
 .. _hosc: https://hands-on.coderefinery.org/
 .. _hosc-a: https://hands-on.coderefinery.org/#a-basics
 .. _hosc-c: https://hands-on.coderefinery.org/#c-linux-and-shell
 
-Getting set up:
+Cluster ecosystem explained
+---------------------------
 
 .. toctree::
    :maxdepth: 1
 
    tut/about-tutorials.rst
    tut/intro.rst
+   tut/prerequisites.rst
    tut/connecting.rst
+   tut/cluster-shell.rst
    tut/applications.rst
    tut/modules.rst
    tut/storage.rst
    tut/remotedata
 
-Actually running things:
+Running calculations
+--------------------
 
 .. toctree::
    :maxdepth: 1
 
+   tut/slurm.rst
    Interactive jobs: running your first command <tut/interactive>
    Serial jobs: running in the queue <tut/serial>
    tut/monitoring.rst
-   tut/array.rst
-   tut/gpu.rst
    tut/parallel.rst
+   tut/array.rst
+   tut/parallel-shared.rst
+   tut/parallel-mpi.rst
+   tut/gpu.rst
    tut/dependency.rst
+
+Supports by discipline 
+======================
+
+(Updating in progress)
+
+.. toctree::
+   :maxdepth: 1
+
+   discipline/machinelearning.rst
+   discipline/mathematics.rst
+   discipline/biosciences.rst
+   discipline/chemistry.rst
+   discipline/physics.rst
+   discipline/miscellaneous.rst
+
 
 .. _application-list:
 .. _apps:
 
 
-Applications
+Applications 
 ============
 
 See our :doc:`general information <apps/index>` and the full list below:
@@ -94,7 +126,6 @@ Examples
 
    examples/index
 
-.. _tutorials:
 
 
 Detailed instructions

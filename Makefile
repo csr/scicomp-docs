@@ -15,9 +15,12 @@ default: html
 
 check:
 	make html SPHINXOPTS="-w warnings.txt $(SPHINXOPTS)"
-	python meta/check-warnings.py --fail warnings.txt
+	python _meta/check-warnings.py --fail warnings.txt
 	@echo
 	@echo "OK: no errors"
+
+autobuild:
+	sphinx-autobuild . _build/html/
 
 # Put it first so that "make" without argument is like "make help".
 help:
@@ -30,12 +33,17 @@ help:
 %: Makefile
 	$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
+# Autobuild with sphinx-autobuild
+livehtml:
+	sphinx-autobuild "$(SOURCEDIR)" "$(BUILDDIR)"/html $(SPHINXOPTS) $(O)
 
+# Make a list of files by last modification date
+find-old:
+	@git ls-files -z | xargs -0 -n1 -I{} -- git --no-pager log -1 --date=format:'%s,%Y-%m-%d' --format='%ad,  {}' -- {}
 
-
-# Science-IT make:
-DEPLOYHOST=fixme
-science-it-deploy: html latexpdfja epub
-	#rsync _build/html/ $(DEPLOYHOST)
-	#rsync _build/latex/AaltoScicomp.pdf $(DEPLOYHOST)
-	#rsync _build/epub/AaltoScicomp.epub $(DEPLOYHOST)
+# export TOKEN=your_plausible_token
+# PLAUSIBLE=plausible.io SITENAME=my.site.eu
+usage-report:
+	make --silent find-old > _meta/edit-dates.txt
+	python _meta/plausible-get-stats.py $(PLAUSIBLE) $(SITENAME) > _meta/pages-$$(date +%Y-%m-%d).csv
+	python _meta/join-edit-dates-and-plausible.py _meta/pages-$$(date +%Y-%m-%d).csv _meta/edit-dates.txt > _meta/edit-dates-joined.csv

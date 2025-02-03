@@ -5,6 +5,8 @@ Feb 2022 / Getting started with scientific computing
 
    * To register for the February 2022 sessions please visit https://link.webropol.com/s/introHPCJan2022
    * Continuation course for days 2-3: :doc:`winter-kickstart`
+   * Twitch has videos for 14 days: https://www.twitch.tv/coderefinery/videos
+   * Youtube playlist (updated each evening): https://youtube.com/playlist?list=PLZLVmS9rf3nOKhGHMw4ZY57rO7tQIxk5V
 
 This course is a general introduction to computational researchers.
 The point is to serve as a guide to your career: a map to the types of
@@ -74,10 +76,12 @@ Schedule
     - Material: :doc:`/triton/usage/workflows`
     - Breakout rooms for other sites (as available).
 
-  - **13:00--13:25: When and how to ask for help**
+  - **13:00--13:25: When and how to ask for help** (Radovan Bast, UiT, Norway)
 
     It's dangerous to go alone, take us!  Don't waste time struggling,
     there are plenty of people here for you.
+
+    - Slides: https://cicero.xyz/v3/remark/0.14.0/github.com/bast/help-with-supercomputers/main/talk.md/
 
   - **13:25--13:50: A tour of scientific computing skills and
     tools**
@@ -85,6 +89,8 @@ Schedule
     There are so many tools available for computing.  We'll describe
     some of most important things and give you links to your next
     steps.
+
+    - Material: https://hackmd.io/@AaltoSciComp/ToolsOfScientificComputing
 
   - **14:00--14:50: Q&A/panel discussion (on any topic)**
 
@@ -135,7 +141,7 @@ the lectures.
 
 `Please register at this link <https://link.webropol.com/s/introHPCJan2022>`__
 Registration is not required to just watch online, lurkers welcome.
-Registration will get you ("*" indicates priority for Finnish acedemic
+Registration will get you ("*" indicates priority for Finnish academic
 members):
 
 - Email reminders and summaries each day.

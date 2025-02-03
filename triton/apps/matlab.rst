@@ -2,6 +2,15 @@
 Matlab
 ======
 
+.. admonition:: Warning: page not updated for current Triton
+  :class: warning, triton-v2-apps
+
+  This page hasn't been updated since Triton was completely upgraded
+  in May 2024.  The software might not be installed and the old
+  information below might not work anymore (or  might need adapting).
+  If you need this software, :ref:`open an issue <issuetracker>` and
+  tell us so we can reinstall/update it.
+
 .. admonition:: Video
 
    `See an example in the Winter Kickstart 2021 course <https://www.youtube.com/watch?v=24NxYtDkw8s&list=PLZLVmS9rf3nN_tMPgqoUQac9bTjZw8JYc&index=22>`__
@@ -15,20 +24,21 @@ run in parallel on one node, with up to 40 cores.)
 
 .. include:: importantnotes/matlab.rst
 
+Memory requirements
+-------------------
+
+The matlab runtime is quite memory hungry.  If you are running a job keep in mind
+that even for small examples you will likely need a minimum of 2 GB just for the 
+runtime. If you plan to run anything in a parpool, you will likely need at least
+2 GB per worker + 2 GB for the runtime.
+
 Interactive usage
 -----------------
 
-Interactive usage is currently available via the ``sinteractive`` tool. Do
-not use the cluster front-end for this, but connect to a node with ``sinteractive``
-The login node is only meant for submitting jobs/compiling. 
-To run an interactive session with a user interface run the following commands from a terminal.
-
-::
-
-    ssh -X user@triton.aalto.fi
-    sinteractive
-    module load matlab
-    matlab &
+Interactive usage is currently available via our `ondemand service <https://ondemand.triton.aalto.fi>`__
+On there, request a Triton Desktop instance and you can run Matlab interactively.
+On the desktop, start a terminal (click on Application (Top right corner -> Favorites -> Terminal).
+Run ``module load matlab`` and then ``matlab`` and you will get a matlab gui. 
 
 Simple serial script
 --------------------
@@ -38,7 +48,7 @@ sample slurm script is provided below::
 
     #!/bin/bash -l
     #SBATCH --time=00:05:00
-    #SBATCH --mem=100M
+    #SBATCH --mem-per-cpu=3G
     #SBATCH -o serial_Matlab.out
     module load matlab
     n=3
@@ -130,12 +140,13 @@ Parallel matlab in exclusive mode
     #!/bin/bash -l
     #SBATCH --time=00:15:00
     #SBATCH --exclusive
+    #SBATCH --mem=4G
     #SBATCH -o parallel_Matlab3.out
 
     export OMP_NUM_THREADS=$(nproc)
 
-    module load matlab/r2017b
-    matlab_multithread -nosplash -r "parallel_Matlab3($OMP_NUM_THREADS) ; exit(0)"
+    module load matlab
+    matlab -nosplash -r "parallel_Matlab3($OMP_NUM_THREADS) ; exit(0)"
 
 parallel\_Matlab3.m::
 
@@ -161,51 +172,6 @@ parallel\_Matlab3.m::
                     exit(0)
             end
     end
-
-Hints for Condor users
-----------------------
-
-The above example also works (even nicer way) for condor.
-
-**A wrapper script to execute matlab on the department workstation.**
-
-::
-
-    #!/bin/bash -l
-    # a wrapper to run Matlab with condor
-    block=$1
-    pointsPerBlock=10
-    totalBlocks=10
-    matlab -nojvm -r "run($block,$pointsPerBlock,$totalBlocks)"
-
-**Condor submission script**
-
-Condor actually contains ArrayJob functionality that makes the task
-easier. ::
-
-    ## Condor submit description (script) file for my_program.exe.
-    ## 1. Specify the [path and] name for the executable file...
-    Executable = run.sh
-    ## 2. Specify Condor execution environment.
-    Universe = vanilla
-    notify   = Error
-    ## 3. Specify remote execution machines running Linux (required)...
-    Requirements = ((OpSys == "Linux") || (OpSysName == "Ubuntu"))
-    ## 4. Define input files and arguments
-    #Input = stdin.txt.$(Process)
-    Arguments = $(Process)
-    ## 5. Define output/error/log files
-    Output = log/stdout.$(Process).txt
-    Error  = log/stderr.$(Process).txt
-    Log    = log/log.$(Process).txt
-    ## 6. Tell Condor which files need to be transferred and when.
-    Transfer_input_files = run.m
-    Transfer_output_files = output-$(Process).mat
-    Transfer_executable = true
-    Should_transfer_files = YES
-    When_to_transfer_output = ON_EXIT
-    ## 7. Add 10 copies of the job to the queue
-    Queue 10
 
 
 FAQ / troubleshooting

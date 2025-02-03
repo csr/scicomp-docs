@@ -1,4 +1,3 @@
-========
 Training
 ========
 
@@ -9,24 +8,28 @@ these skills.  The focus is practical,
 hands-on courses for scientists, not theoretical academic courses.
 
 Scientific Computing in Practice
-================================
+--------------------------------
 
 SCIP is a lecture series at Aalto University which covers hands-on,
 practical scientific computing related topics. Lectures are open for
 the entire Aalto community as well as our partners at FGCI
 consortium.
 
-
 Examples of topics covered at different lectures: HPC crash course,
 Triton kickstarts, Linux Shell, Parallel programming models: MPI and
 OpenMP, GPU computing, Python for scientists, Data analysis with R
-and/or Python, Matlab, HTCondor and many others.
+and/or Python, Matlab and many others.
+
+If you are interested in a re-run of our past courses or if you want 
+to suggest a new course, `please take this survey <https://link.webropol.com/s/scipod>`__.
+
 
 .. toctree::
    :maxdepth: 1
 
-   scip/getting-started-with-scientific-computing
-   scip/winter-kickstart
+   CodeRefinery September 10-12 and 17-19 <https://coderefinery.org>
+   scip/python-for-scicomp-2024
+   Take the survey! Request a re-run of past courses / new courses <https://link.webropol.com/s/scipod>
    scip/index
 
 .. toctree::
@@ -39,43 +42,46 @@ and/or Python, Matlab, HTCondor and many others.
 
 
 **Future courses**
-*Winter-Spring 2022 courses (tentative plan)* -  
-Next year will start with "Introduction to HPC" (aka "Triton winter kickstart"), Data analysis with R and
-Python, introduction to MPI, Code Refinery workshop, Matlab advanced, and few more.
+We are always adding interesting courses. Please check this page once in a while. If you are interested in a re-run of our past courses or if you want
+to suggest a new course, `please take this survey <https://link.webropol.com/s/scipod>`__.
 
 
 Anyone can sign up for announcements at the :doc:`SCIP announcement
 mailinglist <scicomp-announcements-maillist>`.
 
+
+
+Our most important courses
+--------------------------
+
+These are the most important courses we recommend to new users:
+
+.. toctree::
+   :maxdepth: 1
+
+   CodeRefinery <https://coderefinery.org/lessons/core/>
+   Scientific Computing/HPC Kickstart <https://scicomp.aalto.fi/triton/#tutorials>
+
+These are other quite important courses we have developed:
+
+   Linux shell <https://aaltoscicomp.github.io/linux-shell/>
+   Python for Scientific Computing <https://aaltoscicomp.github.io/python-for-scicomp/>
+   Data analysis workflows in Python and R <https://aaltoscicomp.github.io/data-analysis-workflows-course/>
+
+
+
 Other interesting courses
-=========================
+-------------------------
 
 *Data management, Reproducibility, open science*
 
-Please check the `fall calendar for training on data management and open science <https://www.aalto.fi/en/services/training-in-research-data-management-and-open-science#1-autumn-2021>`__, organised by the Aalto Data Agents:
-
-  - Introduction to Research Data Management | Oct 5 2021 at 1–2 PM
-  - Introduction to Github | Oct 6 2021 at 3–4 PM
-  - Data Management Plans: a How-to | Oct 7 2021 at 1–2 PM
-  - Handling of Personal Data | Oct 12 2021 at 1–2.30 PM 
-  - How to Share Research Data Through a Data Repository: A Zenodo Example | Oct 14 2021 at 10–11.30 AM 
-  - Working with Restricted Datasets | Oct 26 2021 at 12–1.30 PM 
-  - Basics of Data Anonymisation | Nov 2 2021 at 1–2 PM 
-  - How to Store Research Data | Nov 4 2021 at 1–2 PM 
-  - How to Make Your Research/Code Reproducible and Reusable | Nov 10 2021 at 1–2.30 PM
-  - Current Trends in Academic Publishing: Plan S and Overlay Journals  | Nov 17 2021 at 1–2.30 PM
-  - Legal Aspects of Research Data | Nov 18 2021 at 1–2 PM
-  - `Research ethics for doctoral students <https://mycourses.aalto.fi/course/view.php?id=23138>`__
-
-Registration and more details at: https://www.aalto.fi/en/services/training-in-research-data-management-and-open-science#1-autumn-2021
+Other relevant courses by Aalto Open Science team will be listed at:
+https://www.aalto.fi/en/services/training-in-research-data-management-and-open-science
 
 
-*Scientific computing*
+*Other courses on scientific computing and data management*
 
-Please check https://mycourses.aalto.fi/ for other courses at Aalto and https://www.csc.fi/en/training for training courses and events at CSC. Some coming courses:
-
-  - `CS-E4580 Programming Parallel Computers <https://mycourses.aalto.fi/course/view.php?id=28198>`__
-  - `CS-E4640 Big Data Platforms D <https://mycourses.aalto.fi/course/view.php?id=28200>`__
+Please check https://mycourses.aalto.fi/ for other courses at Aalto and https://www.csc.fi/en/training for training courses and events at CSC.
 
 MOOC on scientific computing:
 
@@ -84,7 +90,7 @@ MOOC on scientific computing:
 
 
 Skills map
-==========
+----------
 
 There is a lot to learn, and it all depends on each other.  How do you
 get started?
@@ -101,32 +107,3 @@ by level and category, providing you a strategy to get started.
 In order to do basic scientific computing, C (Linux and shell) is
 needed.  To use a computer cluster, D (Clusters and HPC) is useful.  E
 (scientific coding) is useful if you are writing your own software.
-
-
-Our courses
-===========
-
-You can browse the material we have developed for our courses by following the links below.
-
-.. toctree::
-   :maxdepth: 1
-
-   Linux shell <https://aaltoscicomp.github.io/linux-shell/>
-   Python for Scientific Computing <https://aaltoscicomp.github.io/python-for-scicomp/>
-   Data analysis workflows in Python and R <https://aaltoscicomp.github.io/data-analysis-workflows-course/>
-
-
-
-Recommended programming courses
-===============================
-
-Need to learn programming?  We will include some recommended
-online programming courses here.
-
-..
-  Recommended programming courses.  what's current bleeding edge?
-
-  Python
-  R
-  Matlab
-  shell

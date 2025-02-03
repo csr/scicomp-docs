@@ -3,9 +3,13 @@ For grant applicants
 
 .. warning::
 
-   Grant applicants, if you are planning to use Aalto Research Software Engineers service, feel free to contact us at rse-group at aalto.fi, or fill out our `request form <https://selfservice.esupport.aalto.fi/ssc/app#/order/2026/>`__.
+   Grant applicants, if you are planning to use Aalto Research
+   Software Engineers service, feel free to drop by :ref:`SciComp
+   garage for a chat <garage>`, contact us at rse at aalto.fi,
+   or fill out our `request form
+   <https://selfservice.esupport.aalto.fi/ssc/app#/order/2026/>`__.
 
-   This page is currently (2021-09) our best understanding of what is
+   This page is currently (2024-01) our best understanding of what is
    possible.  However, we are still exploring what works and doesn't,
    so contact us early so we can work out bugs together.  Please send
    corrections to us.
@@ -18,58 +22,78 @@ correctly, this can increase your competitiveness:
 your research will be better because you can use RSEs for
 porting/optimizing/scaling of codes, automation, data management, and
 open science, while concentrating the main
-project resources on the actual research question.
+project resources on the actual research question.  We can do those
+listed things *much* faster than most researchers.
+
+If you don't know if you need our services, or need a consultation of
+what is even possible computationally, let us know, too!
+
+.. admonition:: Summary
+
+   * We can serve as a specialist to complement the researchers in
+     your project, which will make your grant more competitive.
+   * Plan on "Staff Scientist" salary level for at least a few months
+     when convenient for you.  (can be as low as 10% time spread out
+     over a longer period of time).
+   * We are written is as a normal staff, since we are.  **Don't
+     mention subcontracting or purchasing** or things that imply that
+     (this can make funders ask questions).
+   * :doc:`Contact us <request>` for more exact costs and our
+     availability.
 
 
 
 Funding options
 ---------------
 
-Short-term services are funded by various departments and schools and
-free to the users (part of the "research environment" services).
-Longer term service should be funded by projects - either an external grant or
-basic funds.  There are two ways to write this into a project proposal:
+Short-term services, less than one month per research group, are
+funded by various departments and schools and free to the users (part
+of the "research environment" services).  Longer term service should
+be funded by projects - either an external grant or basic funds.
+There are two ways to write this into a project proposal:
 
-* As a **research salary**, just like other salaries on your project.
-  This has fewer limits, but is less flexible because we need to go
-  through HR and financial planning.
+1. As a **research salary**, just like other salaries on your project.
+   This has fewer limits, but is less flexible because we need to go
+   through HR and financial planning.
 
-* As a **purchased service**, like usage of different infrastructures.
-  This is flexible, but not compatible with some funders.  It should
-  work well with internal, basic funding.
+2. As a **internal changing/purchased service**, like usage of
+   different infrastructures.  This is flexible, but not compatible
+   with some funders.  It should work well with internal, basic
+   funding.
+
+**Don't mention subcontracting or purchasing in your grant text**
+unless it really has to be organized that way.  Make us appear as
+normal employees, since we are.
 
 
 
-Funding RSE salary
-------------------
+(1) Funding RSE salary
+-----------------------
 
 In this option, your grant directly pays the salary of an RSE from our
 team.  To a funder, this appears the same as hiring a researcher, so
 is compatible with many types of grants.  Some considerations:
 
 * This only works internally in Aalto.
-* Contact us for salary levels.  Your controller will compute the
-  necessary overheads.
-* You should tell you financial staff/HR/etc. that the salary will be
-  used for someone in the School of Science (SCI-common) and ensure
-  that there are no barriers to this.
+* Contact us for salary levels (it is roughly staff scientist) and
+  availability.
+* Tell your controller this salary level and duration.  Your
+  controller will compute the necessary overhead and tell you if it is
+  possible.  (You should tell you financial staff/HR/etc. that the
+  salary will be used for someone in the School of Science
+  (SCI-common) and ensure that this is fine.)
 * Finance/HR will set up the Halli system so that we can bill our
   working hours directly to your project, based on actual time we work.
-* Unless specifically agreed in advance, we don't promise working at
-  certain times.  **Carefully consider the amount of flexibility your
-  funder has (different months of a year, different years of the
-  grant).**  On the other hand, we can often start very quickly, for
-  example if your grant starts with no time to hire someone.
 * Realistically, we can spend up to about 80-90% time in a month on a
-  single project.
-* Note that we bill only the actual time relevant to your project, so
-  while the costs are higher in the end it is probably more efficient
-  than a researcher with other tasks going on at the same time.
+  single project (but you must make sure we have time first!).
+* We bill only the actual time relevant to your project, so
+  while the costs are higher, in the end we are much more efficient
+  than typical researchers who have many other tasks going on.
 
 
 
-Purchasing RSE services
------------------------
+(2) Purchasing RSE services
+---------------------------
 
 Contact us with your needs, and we can give you an estimated price and
 time required.  We can provide the services distributed over a time
@@ -85,7 +109,6 @@ period that is relevant to you.
 
 
 
-
 General grant considerations
 ----------------------------
 
@@ -98,7 +121,7 @@ now, and research engineers are perfect for helping with these things
 because they are experts in the associated technical challenges.  The
 RSE service can help in the societal impact sections: your outputs
 will be more ready to be reused by society.  You could, for example,
-promise deliver more types of outputs that aren't exactly novel
+promise to deliver more types of outputs that aren't exactly novel
 science but help society to use your results (e.g. databases,
 interactive visualisations, etc.).
 
@@ -127,12 +150,13 @@ to be freely available.  6.2.2: "Research data and material produced
 with Academy funding in research projects and research infrastructure
 projects must be made freely available as soon as possible after the
 research results have been published."  We are experts in exactly
-this.
+this for computational and data sciences.
 
 * As a RSE salary:
 
-  * Contact us and we will connect you with our controllers to work
-    out costs.
+  * Contact us for the salary level which you should budget and our
+    availability.  Your controller will help you write this into the
+    budget.
 
   * "Salaries, fees and indirect employee costs" may be included in
     Academy projects.  These may go to research software engineers,
@@ -154,6 +178,9 @@ this.
     equivalent). Short-term research, studies or other assignments
     may also be carried out in the form of outsourced services."  So,
     consider this in justifying the research plan.
+
+  * Don't call this subcontracting or purchasing.  It's normal
+    internal salary.
 
 * As a service purchase:
 
@@ -194,4 +221,5 @@ European Commission grants
 --------------------------
 
 Internal billing is (for practical purposes) not possible
-for EC grants.  Use the "RSE salary" method.
+for EC grants.  Use the "RSE salary" method (and don't call it
+subcontracting or purchasing - we are normal salary).

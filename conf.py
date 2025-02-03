@@ -24,6 +24,8 @@ on_rtd = os.environ.get('READTHEDOCS') == 'True'
 
 # -- General configuration ------------------------------------------------
 
+html_context = { }
+
 # If your documentation needs a minimal Sphinx version, state it here.
 #needs_sphinx = '1.0'
 
@@ -46,6 +48,10 @@ optional_modules = [
     'sphinx_tabs.tabs',
     'sphinx_togglebutton',
     'sphinx_ext_substitution',
+    'sphinx_plausible',
+    'sphinxext.opengraph',
+    'sphinx_minipres',
+    'sphinxext.rediraffe'
     ]
 if on_rtd or 'GITSTAMP' in os.environ:
     optional_modules.append('sphinx_gitstamp')
@@ -56,8 +62,24 @@ for mod in optional_modules:
     except ImportError:
         print('Module %s is not available'%mod)
 
+plausible_enabled = on_rtd
+plausible_domain = 'scicomp.aalto.fi'
+plausible_script = 'https://plausible.cs.aalto.fi/js/plausible.js'
+
+ogp_site_url = "https://scicomp.aalto.fi/"
+ogp_site_name = "Aalto Scientific Computing"
+ogp_image = "_static/asc-socialshare-02.png"
+ogp_image_alt = "ASC hexagon logo; Aalto Scientific Computing; Data, Software, Computing, HPC, and Training."
+ogp_custom_meta_tags = ['<meta property="twitter:creator" content="@SciCompAalto" />']
+
+rediraffe_redirects = '_meta/redirects.txt'
+
 # Add timestamps from git
-gitstamp_fmt = "%d %b %Y"
+gitstamp_fmt = "%Y %b %d"
+# dates earlier than this are highlighted in red in the theme.  Only
+# years supported so far due to %b time format.  Can be overwritten by
+# `:gitstamp_warn_date` in page metadata.
+html_context['gitstamp_warn'] = '2022'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -74,12 +96,18 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Aalto scientific computing'
-copyright = u'2021, Aalto Science-IT'
+project = u'Aalto Scientific Computing'
+copyright = u'2024, Aalto Science-IT and contributors'
 author = u'Aalto Science-IT'
+
+copybutton_exclude = '.linenos, .gp'
 
 # Substitutions
 substitute_path = ['_substitutions/']
+
+supress_warnings = [
+    #'toc.excluded',  # This does not work to hide the orphan page warnings
+    ]
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -111,6 +139,7 @@ language = 'en'
 # directories to ignore when looking for source files.
 exclude_patterns = [
     '_build',
+    '_meta',
     '_substitutions',
     'triton/apps/TEMPLATE.rst',
     'venv*'
@@ -149,28 +178,41 @@ todo_include_todos = True
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 
+html_css_files = [
+    "theme_overrides.css",
+]
+
+html_js_files = [
+    "redirect-to-https.js",
+]
+
+html_theme = "sphinx_rtd_theme"
 if on_rtd:
-    html_theme = 'default'
     os.system('git fetch --unshallow')
-else:
-    import sphinx_rtd_theme
-    html_theme = "sphinx_rtd_theme"
-    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+    os.system('pip freeze')
+#else:
+#    import sphinx_rtd_theme
+#    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
 #html_theme_options = {}
 html_theme_options = {
-    'display_version': False,
-    #'navigation_depth': 3,
-    #'canonical_url': 'https://scicomp.aalto.fi/'
+    #'display_version': False, # no longer needed in 3.0.0
+    'navigation_depth': 5,
+    'prev_next_buttons_location': None,
+    #'canonical_url': 'https://scicomp.aalto.fi/',
+    'sticky_navigation': False,  # nav sidebar scrolls with pages
+    'version_selector': False, # for RTD
+    'style_external_links': True,
     }
-html_context = {'display_github': True,
-                'github_user': 'AaltoSciComp',
-                'github_repo': 'scicomp-docs',
-                'github_version': 'master/',
-               }
+html_context.update(
+    {'display_github': True,
+     'github_user': 'AaltoSciComp',
+     'github_repo': 'scicomp-docs',
+     'github_version': 'master/',
+    })
 
 # Add any paths that contain custom themes here, relative to this directory.
 #html_theme_path = []
@@ -178,7 +220,7 @@ html_context = {'display_github': True,
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
 #html_title = None
-html_title = 'Aalto scientific computing'
+html_title = 'Aalto Scientific Computing (ASC)'
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #html_short_title = None
@@ -186,7 +228,7 @@ html_title = 'Aalto scientific computing'
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
 #html_logo = None
-html_logo = 'meta/logo-hexagons-02-compact-white.svg'
+html_logo = '_meta/logo-hexagons-02-compact-white.svg'
 
 # The name of an image file (relative to this directory) to use as a favicon of
 # the docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
@@ -354,19 +396,7 @@ epub_author = 'Aalto Science-IT'
 
 mathjax_path = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
 
-# Following allows custom CSS to be included
-# https://github.com/rtfd/sphinx_rtd_theme/issues/117
-def setup(app):
-    #app.add_javascript("custom.js")
-    #if on_rtd:
-    #    app.add_javascript(mathjax_path)
-    # sphinx 4.0: must be renamed to add_css_file and add_js_file.
-    import sphinx
-    if sphinx.version_info[0] >= 3:
-        app.add_css_file("theme_overrides.css")
-        app.add_js_file("redirect-to-https.js")
-        app.add_js_file("https://users.aalto.fi/~darstr1/minipres-stable.js")
-    else:
-        app.add_stylesheet("theme_overrides.css")
-        app.add_javascript("redirect-to-https.js")
-        app.add_javascript("https://users.aalto.fi/~darstr1/minipres-stable.js")
+
+# Debugging:
+#if on_rtd:
+#    os.system("pip freeze")

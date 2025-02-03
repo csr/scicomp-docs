@@ -16,12 +16,12 @@ Python distributions
 |                          | Python to use            | How to install own       |
 |                          |                          | packages                 |
 +==========================+==========================+==========================+
-| Simple programs with     | Anaconda 2/3             | ``pip install --user``   |
+| Simple programs with     |                          | ``pip install --user``   |
 | common packages, not     |                          |                          |
 | switching between        |                          |                          |
 | Pythons often            |                          |                          |
 +--------------------------+--------------------------+--------------------------+
-| Most of the use cases,   | Anaconda 2/3             | conda environment +      |
+| Most of the use cases,   |                          | conda environment +      |
 | but sometimes different  |                          | conda                    |
 | versions of modules      |                          |                          |
 | needed                   |                          |                          |
@@ -33,7 +33,7 @@ Python distributions
 There are two main versions of python: 2 and 3. There are also
 different distributions: The "regular" CPython that is usually
 provided with the operating system, Anaconda (a package containing
-cpython + a lot of other scientific software all bundled togeter),
+cpython + a lot of other scientific software all bundled together),
 PyPy (a just-in-time compiler, which can be much faster for some use
 cases).
 
@@ -118,7 +118,7 @@ Conda environments
    for an introduction + demo.
 
 A conda environment lets you install all your own packages. For
-instructions how to create, activate and deactivate conda envrionments
+instructions how to create, activate and deactivate conda environments
 see http://conda.pydata.org/docs/using/envs.html .
 
 A few notes about conda environments:
@@ -158,8 +158,7 @@ remove everything installed this way and not do it anymore.**
 Python: virtualenv
 ------------------
 
-Virtualenv is default-Python way of making environments, but does
-**not** work with Anaconda.
+Virtualenv is default-Python way of making environments.
 
 ::
 

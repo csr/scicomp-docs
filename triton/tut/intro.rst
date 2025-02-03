@@ -1,11 +1,23 @@
 About clusters and your work
 ============================
 
-.. admonition:: Video
+.. include:: /triton/ref/videos.rst
 
-   `Watch this in the Winter Kickstart 2021 course <https://www.youtube.com/watch?v=OYgSBI-5bUo&list=PLZLVmS9rf3nN_tMPgqoUQac9bTjZw8JYc&index=6>`__
+.. admonition:: Abstract
 
-*This is the first tutorial.  The next is* :doc:`connecting`.
+   * A cluster is a bunch of computers connected together by network,
+     shared storage, and a scheduler (Slurm) that distributes waiting
+     jobs across the available resources.
+
+   * Triton is the Aalto University cluster and has significant
+     resources and local support.
+
+   * A cluster needs techniques to use properly - it's not like your
+     own computer which you have full access to.
+
+   * Ask for help if you need it.
+
+   * Keep the :doc:`../ref/index` open.
 
 Science-IT is an Aalto infrastructure for scientific computing.  Its
 roots was a collaboration between the Information and Computer Science
@@ -14,6 +26,31 @@ Science department (now NBE), and Applied Physics department.  Now, it
 still serves all Aalto and is organized from the School of Science.
 
 You are now at the first step of the Triton tutorial.
+
+
+
+What is a cluster?
+------------------
+
+A high-performance computing cluster is basically a lot of computers
+not *that* different than your own.  While the hardware is not that
+much more powerful than a typical "power workstation", it's special in
+that there is so much of it and you can use it together.  We'll learn
+more about how it's used together later on.
+
+.. figure:: https://raw.githubusercontent.com/AaltoSciComp/aaltoscicomp-graphics/master/figures/cluster-schematic/cluster-schematic-cluster.png
+   :alt: Schematic of cluster.  At the left we see our laptop, the internet (cloud), and a network drive.
+         To the right of that we see the login node, by which all connections go, data
+         storage, and then all of the different compute nodes (CPU and GPU).
+
+   The schematic of our sample cluster.  We'll go through this piece
+   by piece.
+
+   The things labeled "CPU Node" and "GPU Node" aren't quite accurate
+   in real life: that picture better depicts one a whole rack of
+   nodes.  But we show it like this so that we can pretend that one row
+   is a CPU later on to illustrate a point.
+
 
 
 About Triton
@@ -28,6 +65,14 @@ We use Linux as an operating system (like most supercomputers).  We
 are a cluster: many connected nodes with a scheduling system to divide
 work between them.  The network and some storage is shared, CPUs,
 memory, and other storage is not shared.
+
+.. admonition:: Triton was renewed in May 2024
+   :class: warning, triton-v2
+
+   Triton was completely re-installed and upgraded in May 2024. Anything
+   that worked before has to be updated or reinstalled to work again,
+   and many lesser-used things haven't been.  If you notice something
+   wrong or missing, let us know.
 
 .. admonition:: A real Ship of Theseus
 
@@ -51,42 +96,15 @@ scripting, managing software, managing data, and so on.  Triton is a
 good system to use for learning.
 
 
-Building your skills
---------------------
-
-.. seealso::
-
-   Main article: :doc:`../../training/index`
-
-As time goes on, computers are getting easier and easier to use.
-However, research is not a consumer product, and the fact is that you
-need more knowledge to use Triton than most people learn in academic
-courses.
-
-We have created a `modular
-training plan <https://hands-on.coderefinery.org>`__, which
-divides useful knowledge into levels.  In order to use Triton well, you need to be somewhat
-proficient at Linux usage (C level).  In order to do parallel work,
-you need to be good at the D-level and also somewhat proficient at the
-HPC level (E-level).  This tutorial and user guide covers the D-level,
-but it is up to you to reach the C-level first.
-
-See our `training program and plan <https://hands-on.coderefinery.org>`__ for
-suggested material for self-study and lessons.  We offer routine
-training, see our :doc:`Scientific Computing in Practice lecture series
-</training/scip/index>` page for info.
-
-**You can't learn everything you need all at once.  Instead,
-continually learn and know when to ask for help.**
-
-
 
 Getting help
 ------------
 
 .. seealso::
 
-   Main article: :doc:`../help`
+   * Main reference: :doc:`../help`
+   * `How to ask for help with (super)computers
+     <https://zenodo.org/records/8392763>`__
 
 First off, realize **it is hard to do everything alone** - with the
 diversity of types of computational research and researchers, it's not
@@ -118,6 +136,15 @@ the issue tracker, otherwise we will point you there.
 
 
 
+Quick reference
+---------------
+
+Open the :doc:`../ref/index` - you don't need to know what is on it
+(that is what these tutorials cover), but having it open now and
+during your work will help you a lot.
+
+
+
 What's next?
 ------------
-The next tutorial is :doc:`connecting to the cluster <connecting>`.
+The next tutorial is :doc:`prerequisites`.

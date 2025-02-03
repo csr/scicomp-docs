@@ -12,6 +12,8 @@ Python is widely used programming language where we have installed all
 basic packages on every node. Yet, python develops quite fast and the
 system provided packages are ofter not complete or getting old.
 
+.. highlight:: console
+
 Python distributions
 --------------------
 
@@ -19,69 +21,101 @@ Python distributions
    :header-rows: 1
 
    * *
-     * Python to use
-     * How to install own packages
+     * What to use
+     * How
 
-   * * I don't really care, I just want recent stuff and to not worry.
-     * Anaconda: ``module load`` :sub:`(sw-module-anaconda) *anaconda*`
-     *
+   * * I use some common libraries
+     * The pre-built python environment by ASC
+     * ``module load scicomp-python-env``
 
-   * * Simple programs with common packages, not switching between
-       Pythons often
-     * Anaconda: ``module load anaconda``
-     * ``pip install --user``
+   * * I need to select my own packages
+     * Mamba/conda environments
+     * ``module load mamba`` and :doc:`python-conda`
 
-   * * Your own conda environment
-     * Miniconda: ``module load miniconda``
-     * conda environment + conda
+   * * Own small pure Python packages
+     * Virtual environment (for most purposes we recommend Conda though)
+     * Normal virtualenv tools
 
-   * * Your own virtual environment
-     * Module virtualenv ``module load py-virtualenv``
-     * virtualenv + pip + setuptools
 
 The main version of modern Python is 3. Support for old Python 2 ended at the
 end of 2019. There are also different distributions: The "regular" CPython,
-Anaconda (a package containing CPython + a lot of other scientific software all
-bundled togeter), PyPy (a just-in-time compiler,  which can be much faster for
-some use cases). Triton supports all of these.
-
--  For general scientific/data science use, we suggest that you use
-   Anaconda. It comes with the most common scientific software included,
-   and is reasonably optimized.
--  There are many other "regular" CPython versions in the module system.
-   These are compiled and optimized for Triton, and are highly
-   recommended.  The default system Python is old and won't be updated.
+Anaconda (using the conda package manager and containing CPython + a lot of other scientific software all
+bundled together, but not licensed for use in large organizations),
+miniforge/micromamba (installers focusing on the conda-forge channel
+from the conda package manager),
+PyPy (a just-in-time compiler,  which can be much faster for
+some use cases).
 
 Make sure your environments are **reproducible** - you can recreate
-them from scratch.  History shows you will probably have to do this
-eventually, and it also ensures that others can always use your code.
-We recommend a minimal ``requirements.txt`` (pip) or
-``environment.yml`` (conda), hand-created with the minimal
-dependencies in there.
+them from scratch.  History shows it's easier to re-create when you
+have a problem (compared to solving dependency problems), and your
+code will also be installable on other systems.
+We recommend a minimal ``environment.yml`` (conda) or
+``requirements.txt`` (pip), hand-created with exactly what you need in
+there.
 
-Quickstart
-----------
 
-Use ``module load anaconda`` (or ``module load anaconda2`` for Python 2) to get a
-modern Python.
+.. _scicomp-python-env:
 
-If you have simple needs, use :ref:`pip install --user
-<pip-install-user>` to install packages.  For complex needs, use
-:ref:`anaconda + conda environments <conda>` to isolate your
-projects.
+Triton pre-built ``scicomp-python-env``
+---------------------------------------
 
-.. _pip-install-user:
+This module contains a pre-built Conda environment with many common
+packages people request.  It might serve your needs, and we can
+install other packages into it if you need it (but it might be faster
+to make your own env).  Note that the versions in this might get updated
+at any time, so it's not a stable solution.
 
-Install your own packages easily
---------------------------------
+It is loaded through the module system::
+
+  $ module load scicomp-python-env
+
+
+
+Conda environments
+------------------
+
+.. seealso::
+
+   :doc:`python-conda`
+
+
+
+.. _virtualenv:
+
+Virtual environments
+--------------------
+
+Python's normal virtual environment tools work on Triton.  We normally
+recommend Conda environments instead, since they handle all the extra
+compiled libraries needed for scientific software.  Virtual
+environments probably work fine for pure-Python code.
+
+We don't include more instructions on virtual environments here.
+
+
+
+Conda/virtualenvironments in Jupyter
+------------------------------------
+
+If you make a conda environment / virtual environment, you can use it
+from Triton's JupyterHub (or your own Jupyter).  See
+:ref:`triton-jupyter-virtualenv-conda-kernels`.
+
+
+
+Warning: ``pip install --user``
+-------------------------------
 
 .. warning:: ``pip install --user`` can result in incompatibilities
 
-   If you do this, then the module will be shared among all
-   your projects. It is quite likely that eventually, you will get some
-   incompatibilities between the Python you are using and the modules
+   We stringly recommend not to instal packages using ``pip install --user``.
+   If you do this, the package will be shared among all
+   your projects, and will even overwrite any package installed in an environment.
+   It is quite likely that eventually, you will get some
+   incompatibilities between the Python you are using and the packages
    installed. In that case, you are on your own (simple recommendation is
-   to remove all modules from ``~/.local/lib/pythonN.N`` and reinstall). **If
+   to remove all packages from ``~/.local/lib/pythonN.N`` and reinstall). **If
    you get incompatible module errors, our first recommendation will be to
    remove everything installed this way and use conda/virtual
    environments instead.**  It's not a bad idea to do this when you
@@ -89,19 +123,9 @@ Install your own packages easily
 
    If you encounter problems, remove all your user packages::
 
-      rm -r ~/.local/lib/python*.*/
+      $ rm -r ~/.local/lib/python*.*/
 
    and reinstall everything *after* loading the environment you want.
-
-Installing your own packages with ``pip install`` won't work, since it
-tries to install globally for all users. Instead, you should do this
-(add ``--user``) to install the package in your home directory
-(``~/.local/lib/pythonN.N/``)::
-
-  pip install --user $package_name
-
-This is quick and effective best used for leaf packages without many
-dependencies and if you don't switch Python modules often.
 
 .. note:: Example of dangers of ``pip install --user``
 
@@ -111,207 +135,7 @@ dependencies and if you don't switch Python modules often.
    install that was hiding any Tensorflow in any module (forcing a CPU
    version on them).
 
-Note: ``pip`` installs from the `Python Package Index
-<https://pypi.org/>`__.
 
-.. _conda:
-
-Anaconda and conda environments
--------------------------------
-
-`Anaconda <https://www.anaconda.com>`__ is a Python distribution by
-Continuum Analytics (open source, of course). It is nothing fancy,
-they just take a lot of useful scientific packages and their dependencies
-and put them all together, make sure they work, and do some optimization.
-They also include most of the most common computing and data science packages
-and non-Python compiled software and libraries. It is also all open
-source, and is packaged nicely so that it can easily be installed on
-any major OS.
-
-To load anaconda, use the module system (you can also load specific
-versions):
-
-::
-
-    module load anaconda     # python3
-    module load anaconda2    # python2
-
-.. note::
-
-   Before 2020, Python3 was via the ``anaconda3`` module (note the
-   ``3`` on the end).  That's still there, but in 2020 we completely
-   revised our Anaconda installation system, and dropped active
-   maintenance of Python 2.  All updates are in ``anaconda`` only in
-   the future.
-
-Conda environments
-~~~~~~~~~~~~~~~~~~
-
-.. seealso::
-
-   Watch a `Research Software Hour episode on conda
-   <https://www.youtube.com/watch?v=ddCde5Nu2qo&list=PLpLblYHCzJAB6blBBa0O2BEYadVZV3JYf>`__
-   for an introduction + demo.
-
-
-If you encounter a situation where you need to create your own environment,
-we recommend that you use conda environments. When you create your own
-environment the packages from the base environment (default environment
-installed by us) will not be used, but you can choose which packages you want
-to install.
-
-We nowadays recommend that you use the ``miniconda``-module for installing these
-environments. Miniconda is basically a minimal Anaconda installation that can be used to
-create your own environments.
-
-Do note that these environments can be quite big and if you have multiple
-environments installed you can run into quota issues in your ``/home``. If
-you encounter such issues do contact us. In the past we recommended installing
-conda environments under ``$WRKDIR``, but this can cause file system problems
-when launching array jobs and is thus no longer recommended.
-
-**virtualenv** does not work with Anaconda, use ``conda`` instead.
-
--  Load the miniconda module. You should look up the version and use
-   load same version each time you source the environment::
-
-       # Load miniconda first.  This must always be done before activating the env!
-       module load miniconda
-
--  Create an environment. This needs to be done once::
-
-       # create environment with the packages you require
-       conda create -n ENV_NAME python pip ipython tensorflow-gpu pandas ...
-
--  Activate the environment. This needs to be done every time you load
-   the environment::
-
-       # This must be run in each shell to set up the environment variables properly.
-       # make sure module is loaded first.
-       source activate ENV_NAME
-
--  Activating and using the environment, installing more packages,
-   etc. can be done either using ``conda install`` or ``pip install``::
-
-       # Install more packages, either conda or pip
-       conda search PACKAGE_NAME
-       conda install PACKAGE_NAME
-       pip install PACKAGE_NAME
-
--  Leaving the environment when done (optional)::
-
-       # Deactivate the environment
-       source deactivate
-
--  Worst case, you have incompatibility problems. Remove everything,
-   including the stuff installed with ``pip install --user``. If you've
-   mixed your personal stuff in with this, then you will have to
-   separate it out.::
-
-       # Remove anything installed with pip install --user.
-       rm -r ~/.local/lib/python*.*/
-
-A few notes about conda environments:
-
--  Once you use a conda environment, everything goes into it. Don't mix
-   versions with, for example, local packages in your home dir and
-   ``--pip install --user``.  Things installed (even previously) with
-   ``pip install --user`` will be visible in the conda environment and
-   can make your life hard!
-   Eventually you'll get dependency problems.
--  Often the same goes for other python based modules. We have setup
-   many modules that do use anaconda as a backend. So, if you know what
-   you are doing this might work.
--  If you need to activate an environment from a Slurm script,
-   remember to do ``source activate`` and not ``conda activate``.
-
-.. admonition:: ``conda init``, ``conda activate``, and ``source activate``
-   :class: toggle
-
-   We don't recommend doing ``conda init`` like many sources
-   recommend: this will *permanently* affect your ``.bashrc`` file and
-   make hard-to-debug problems later.  The main points of ``conda
-   init`` are to a) automatically activate an environment (not good on
-   a cluster: make it explicit so it can be more easily debugged)
-   and b) make ``conda`` a shell function (not command) so that
-   ``conda activate`` will work (``source activate`` works as well in
-   all cases, no confusion if others don't.)
-
-   - If you activate one environment from another, for example after
-     loading an anaconda module, do ``source activate ENV_NAME`` like
-     shown above (conda installation in the environment not needed).
-
-   - If you make your own standalone conda environments, install the
-     ``conda`` package in them, then...
-
-   - Activate a standalone environment with conda installed in it by
-     ``source PATH/TO/ENV_DIRECTORY/bin/activate`` (which incidentally
-     activates just that one session for conda).
-
-
-
-.. _virtualenv:
-
-Python: virtualenv
-------------------
-
-Virtualenv is default-Python way of making environments, but does
-**not** work with Anaconda.  We generally recommend using anaconda,
-since it includes a lot more stuff by default, but ``virtualenv``
-works on other systems easily so it's good to know about.
-
-::
-
-    # Load module python
-    module load py-virtualenv
-
-    # Create environment
-    virtualenv DIR
-
-    # activate it (in each shell that uses it)
-    source DIR/bin/activate
-
-    # install more things (e.g. ipython, etc.)
-    pip install PACKAGE_NAME
-
-    # deactivate the virtualenv
-    deactivate
-
-.. _python-ipyparallel:
-
-IPython Parallel
-----------------
-
-`ipyparallel <https://ipyparallel.readthedocs.io/en/latest/>`__ is a
-tool for running embarrassingly parallel code using Python.   The
-basic idea is that you have a *controller* and *engines*.  You have a
-*client* process which is actually running your own code.
-
-Preliminary notes: ipyparallel is installed in the
-anaconda{2,3}/latest modules.
-
-Let's say that you are doing some basic interactive work:
-
-* Controller: this can run on the frontend node, or you can put it on
-  a script.  To start: ``ipcontroller --ip="*"``
-* Engines: ``srun -N4 ipengine``: This runs the four engines in slurm
-  interactively.  You don't need to interact with this once it is
-  running, but remember to stop the process once it is done because it
-  is using resources.  You can start/stop this as needed.
-* Start your Python process and use things like normal::
-
-    import os
-    import ipyparallel
-    client = ipyparallel.Client()
-    result = client[:].apply_async(os.getpid)
-    pid_map = result.get_dict()
-    print(pid_map)
-
-This method lets you turn on/off the engines as needed.  This isn't the
-most advanced way to use ipyparallel, but works for interactive use.
-
-See also: :doc:`../examples/python/ipyparallel/ipyparallel` for a version
-which goes in a slurm script.
 
 Background: ``pip`` vs ``python`` vs ``anaconda`` vs ``conda`` vs ``virtualenv``
 --------------------------------------------------------------------------------
@@ -322,7 +146,7 @@ great for research where you need to be agile and install whatever
 versions and packages you need.  **We highly recommend virtual
 environments or conda environments (below)**
 
-   -  Anaconda: use conda, see below
+   -  Conda: use conda, see below
    -  Normal Python: virtualenv + pip install, see below
 
 You often need to install your own packages. Python has its own package
@@ -361,25 +185,19 @@ installation, so cloning the entire Anaconda environment to local conda
 environment will not work (not a good idea in the first place but some
 users try this every now and then).
 
+
+
 Examples
 --------
 
-Running Python with internal parallelization (OpenMP)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-A simple parallel Python script using OpenMP. Both anaconda modules and
-optimized Python modules support OpenMP, but optimized versions are
-faster.
-
-.. include:: ../examples/python_openmp.rst
+.. include:: ../examples/python/python_openmp/python_openmp.rst
 
 
 Running MPI parallelized Python with mpi4py
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 MPI parallelized Python requires a valid MPI installation that support
-our SLURM scheduler. Thus anaconda is not the best option. We have
-installed MPI-supporting Python versions to different toolchains.
+our SLURM scheduler. We have installed MPI-supporting Python versions to different toolchains.
 
 Using mpi4py is quite easy. Example is provided below.
 

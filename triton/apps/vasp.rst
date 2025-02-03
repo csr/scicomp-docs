@@ -2,6 +2,15 @@
 VASP
 ====
 
+.. admonition:: Warning: page not updated for current Triton
+  :class: warning, triton-v2-apps
+
+  This page hasn't been updated since Triton was completely upgraded
+  in May 2024.  The software might not be installed and the old
+  information below might not work anymore (or  might need adapting).
+  If you need this software, :ref:`open an issue <issuetracker>` and
+  tell us so we can reinstall/update it.
+
 `VASP <http://www.vasp.at/>`__  (Vienna Ab initio Simulation Package) is
 a computer program for atomic scale materials modelling, e.g. electronic
 structure calculations and quantum-mechanical molecular dynamics, from
@@ -14,21 +23,21 @@ list. Afterwards, contact your local triton admin who will take care of
 the IT gymnastics, and CC the vaspmaster so that he is aware of who gets
 added to the list.
 
-For the PHYS department, the vaspmaster is Janne Blomqvist.
+For the PHYS department, the vaspmaster is Ivan Tervanto.
 
 For each VASP version, there are 3 binaries compiled. All versions are
-MPI versions.
+MPI and OpenMP versions.
 
 -  vasp\_std: The "standard" vasp, compiled with NGZhalf
 -  vasp\_gam: Gamma point only. Faster if you use only a single k-point.
 -  vasp\_ncl: For non-collinear spin calculations
 
-VASP 5.4.4
+VASP 6.4.1
 ==========
 
-The binaries are compiled with the Intel compiler suite and the MKL
-library, the used toolchain module is ``intel/2019a``. Example
-batch script
+The binaries are compiled with the GNU compilers, MKL (incl ScaLAPACK) and OpenMPI
+libraries, the used modules ``gcc/11.2.0 intel-oneapi-mkl/2021.4.0 openmpi/4.0.5``.
+Example batch script
 
 ::
 
@@ -37,13 +46,8 @@ batch script
     #SBATCH --ntasks=8
     #SBATCH --time=06:00:00
     #SBATCH --mem-per-cpu=1500M
-    ml vasp/5.4.4
-    mpirun vasp_std
-
-Note that contrary to our usual instructions where we strongly
-recommend to use ``srun`` to launch MPI applications, here we must use
-``mpirun`` as the ``srun`` launcher does not work when using Intel
-MPI.
+    module load vasp/6.4.1
+    srun vasp_std
 
 
 Potentials
@@ -58,6 +62,26 @@ Old VASP versions (obsolete, for reference only!)
 
 These old versions are unlikely to work as they use old MPI and IB
 libraries that have stopped working due to upgrades over the years.
+
+VASP 5.4.4
+~~~~~~~~~~
+
+The binaries are compiled with the Intel compiler suite and the MKL
+library, the used toolchain module is ``intel-parallel-studio/cluster.2020.0-intelmpi``.
+Example batch script
+
+::
+
+    #!/bin/bash -l
+    #SBATCH --nodes=1
+    #SBATCH --ntasks=8
+    #SBATCH --time=06:00:00
+    #SBATCH --mem-per-cpu=1500M
+    module load vasp/5.4.4
+    export I_MPI_PMI_LIBRARY=/usr/lib64/libpmi.so
+    srun vasp_std
+
+
 
 VASP 5.4.1
 ~~~~~~~~~~

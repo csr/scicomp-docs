@@ -1,9 +1,16 @@
 Tensorflow
 ==========
 
-:supportlevel: A
-:pagelastupdated: 2020-05-15
-:maintainer:
+.. admonition:: Warning: page not updated for current Triton
+  :class: warning, triton-v2-apps
+
+  This page hasn't been updated since Triton was completely upgraded
+  in May 2024.  The software might not be installed and the old
+  information below might not work anymore (or  might need adapting).
+  If you need this software, :ref:`open an issue <issuetracker>` and
+  tell us so we can reinstall/update it.
+
+:pagelastupdated: 2022-01-09
 
 .. highlight:: bash
 
@@ -14,45 +21,22 @@ Basic usage
 
 First, check the tutorials up to and including :doc:`../tut/gpu`.
 
-If you plan on using NVIDIA's containers to run your model, please check
-the page about :doc:`nvidiacontainers`.
+Installing via conda
+--------------------
 
-The basic way to use is via the Python in the ``anaconda`` module.
-The versions with ``-tf2`` (the default ones) have Tensorflow 2
-installed.  If you use ``module spider anaconda``, you can see a
-``-tf1`` version available.
+Have a look :doc:`here </triton/apps/python-conda>` for details on how to install
+conda environments.
 
-.. warning:: Older versions of Tensorflow were CPU-only or GPU-only
+.. include:: /triton/examples/tensorflow/tensorflow_with_conda.rst
 
-   With older versions of tensorflow (<1.15.0), you have to decide at
-   *install time* if you want a version that runs on CPUs or GPUs. This
-   means that we can't install it for everyone and expect it to work
-   everywhere - you have to load something different if you want it to
-   run on login node/regular nodes (probably for testing) or GPU nodes.
-   The old ``-cpu`` and ``-gpu`` versions in the ``anaconda2``- and
-   ``anaconda3``-modules denoted this.
+.. include:: /triton/examples/cuda/cuda_override_hint.rst
 
-   From tensorflow versions >= 1.15.0, they solved this problem (thankfully)
 
-Don't load any additional CUDA modules, anaconda includes everything.
-
-If you use GPUs, you need ``--constraint='kepler|pascal|volta'`` in
-order to select a GPU new enough to run tensorflow.  (Note that as we
-get newer cards, this will need further updating).
+Examples
+--------
 
 .. include:: ../examples/tensorflow/tensorflow_mnist.rst
 
 .. include:: ../examples/tensorflow/tensorflow_singularity_mnist.rst
 
-Common problems
----------------
 
-* **ImportError: libcuda.so.1: cannot open shared object file: No such
-  file or directory**. Older versions of GPU tensorflow can only be imported
-  on GPU nodes (even though you'd think that you can import it and just not
-  use the GPUs).  So you can only run this code in the GPU queue. Solution
-  for this is to use the newer ``anaconda``-modules.
-
-* Random CUDA errors: don't load any other CUDA modules, only
-  ``anaconda``.  Anaconda includes the necessary libraries in compatible
-  versions.

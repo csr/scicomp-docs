@@ -1,6 +1,6 @@
-==================================
-Feb 2022 / Triton Winter Kickstart
-==================================
+=================================================
+Feb 2022 / Introduction to HPC (Winter Kickstart)
+=================================================
 
 .. admonition:: Quick Links
 
@@ -8,6 +8,8 @@ Feb 2022 / Triton Winter Kickstart
    * Day 1 course page: :doc:`getting-started-with-scientific-computing`
    * Lesson materials: :ref:`Triton tutorials <tutorials>`, see below
      for details.
+   * Twitch has videos for 14 days: https://www.twitch.tv/coderefinery/videos
+   * Youtube playlist (updated each evening): https://youtube.com/playlist?list=PLZLVmS9rf3nOKhGHMw4ZY57rO7tQIxk5V
 
 Winter Kickstart is a two × half day course for researchers to get
 started with high-performance computing (HPC) clusters.  We will take
@@ -27,8 +29,8 @@ copy/paste examples on how to find, run and monitor your applications,
 and manage your data. In addition to how to optimize your workflow in
 terms of filesystem traffic, memory usage etc.
 
-The course is obligatory for all new Triton users and recommended to
-all interested in the field.
+If you are at Aalto University: the course is obligatory for all new 
+Triton users and recommended to all interested in the field.
 
 This course is part of :doc:`Scientific Computing in Practice <index>` lecture series
 at Aalto University.
@@ -50,8 +52,15 @@ will mention these points where we know of them).  Known sites hosting:
 
 * FCCI (Finland): may register via the Aalto form.
 * Participants from University of Helsinki can follow how to connect
-  to their Kale/Ukko2 cluster by following `their own instructions
-  <https://wiki.helsinki.fi/display/it4sci/HPC++Winter+KICKSTART+2021>`__.
+  to their Kale/Turso cluster by following `their own instructions
+  <https://wiki.helsinki.fi/pages/viewpage.action?pageId=408323613>`__.
+* Participants from University of Oulu: please follow instructions on
+  `how to access the Carpo2 computing cluster <https://ict.oulu.fi/17120/?page&lang=en>`__.
+* `CSC <https://csc.fi>`__ (Finland): Participants with `CSC user
+  account <https://docs.csc.fi/accounts/>`__ can try examples also in
+  CSC supercomputers, see the `overview of CSC supercomputers
+  <https://docs.csc.fi/computing/overview/>`__ for details on
+  connecting, etc.
 
 If you want to get your site listed here and/or help out, contact us
 via the `CodeRefinery chat
@@ -68,46 +77,63 @@ Schedule
 
 THU-FRI 3-4.February, 12:00-16:00.
 
-- **Wed, 2 February 2022 (mandatory if new Triton user)**
+- **Wed, 2 February 2022 (mandatory for new Triton users)**
 
-  - **11:50-14:00** We strongly suggest also
-    attending the :doc:`getting-started-with-scientific-computing`
-    course.  This is a bigger-picture introduction.
+  We strongly recommend that you join this day as well. This is a bigger-picture introduction.
+
+  - **11:50 -- 15:00**
+    - :doc:`getting-started-with-scientific-computing`
   - **15:00 -- 15:45 (especially important)** Help connecting to
     Triton (Aalto), Zoom link by email to registered participants.
 
-- **Thu, 3 February 2022** (roughly connecting to serial jobs in
-  the :ref:`tutorials <tutorials>`)
+- **Thu, 3 February 2022**
 
-  - **11:50 -- 16:00**, all times approximate, breaks every hour
-  - :doc:`/triton/tut/about-tutorials`
-  - :doc:`/triton/tut/intro`
-  - Real example 1: Large-scale computing with array jobs
-  - Real example 2: Large-scale parallel computing
-  - :doc:`/triton/tut/interactive`
-  - :doc:`/triton/tut/serial`
-  - :doc:`/triton/tut/monitoring`
-  - :doc:`/triton/tut/storage`
-  - :doc:`/triton/tut/remotedata`
-  - :doc:`/triton/tut/applications`
-  - :doc:`/triton/tut/modules`
+  All times approximate, breaks every hour.
+
+  - **11:50 -- 12:30: What can you do with a computational cluster?**
+
+    - :doc:`/triton/tut/intro`
+    - Real example 1: Large-scale computing with array jobs
+    - Real example 2: Large-scale parallel computing
+
+  - **12:30 -- 15:00: Running your first jobs in the queue**
+
+    - :doc:`/triton/tut/interactive`
+    - :doc:`/triton/tut/serial`
+    - :doc:`/triton/tut/monitoring`
+
+  - **15:00 -- 15:30: Other things you should know about the HPC environment**
+
+    - :doc:`/triton/tut/modules`
+    - :doc:`/triton/tut/storage`
+    - :doc:`/triton/tut/remotedata`
+
+  - **15:30 -- 16:00: Questions to presenters**
 
 - **Fri, 4 February 2022**
 
-  - **11:50 -- 16:00**, all times approximate, breaks every hour
-  - :doc:`/triton/tut/array`
-  - :doc:`/triton/tut/gpu`
-  - :doc:`/triton/tut/parallel`
-  - ~ 14:30 **Laptops to Lumi**, by CSC
+  All times approximate, breaks every hour.
+
+  - **11:50 -- 13:00: Simple parallelization with array jobs**
+
+    - :doc:`/triton/tut/array`
+
+  - **13:00 -- 14:00: Using more than one CPU at the same time**
+
+    - :doc:`/triton/tut/parallel`
+
+  - **14:00 -- 14:30: Laptops to Lumi**, Jussi Enkovaara, CSC
 
     You now know of basics of using a computing cluster.  What if you
     need more than what a university can provide?  CSC (and other
     national computing centers) have even more resources, and this is
-    a tour of them.
+    a tour of them. `Slides here <https://github.com/AaltoSciComp/scicomp-docs/raw/master/training/scip/CSC-services_022022.pdf>`__.
 
-  - ~15:00 Real examples of a few common programming languages/frameworks
-  - Likely there is time for additions or special requests
+  - **14:40 -- 15:30: Running jobs that can utilize GPU hardware**
 
+    - :doc:`/triton/tut/gpu`
+
+  - **15:30 -- 16:00:** Questions to presenters
 
 
 Practical information
@@ -126,6 +152,7 @@ the course.
 * Richard Darst
 * Enrico Glerean
 * Simo Tuomisto
+* Jussi Enkovaara
 * ... and you?
 
 

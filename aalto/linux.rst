@@ -27,7 +27,7 @@ Basics
    directory will be your Aalto home directory. That is, the same home
    directory that you have in Aalto Windows machines and the Aalto
    Linux machines, including shell servers (kosh, taltta, lyta, brute, force).
--  Most installations have Ubuntu 16.04 or 18.04, 20.04 is coming soon.
+-  Most installations have Ubuntu 20.04 or 22.04, 24.04 is coming soon.
 -  A pretty good guide is availiable at https://linux.aalto.fi .
 -  **Login is with Aalto credentials**. Anyone can
    log in to any computer.  Since login is tied to your Aalto account,
@@ -65,7 +65,7 @@ Basics
    logo close to the "Login" input field.
 -  Personal web pages. What you put under ``~/public_html`` will be
    visible at ``https://users.aalto.fi/~username``.  See
-   :doc:`aaltostorage`.
+   :doc:`/data/aalto-details`.
 
 **When requesting a new computer:**
 
@@ -134,13 +134,13 @@ remotely to the desktops.
 Data
 ----
 
-See the general :doc:`storage page <aaltostorage>` for the full story
+See the general :doc:`storage page </data/aalto-details>` for the full story
 (this is mainly oriented towards Linux).  All of the common shared
 directories are available on department Linux by default.
 
 We recommend that most data is stored in shared group directories, to
 provide access control and sharing.  See :doc:`the Aalto data page
-<aaltodata>`.
+</data/principles>`.
 
 You can use the program ``unison`` or ``unison-gtk`` to synchronise
 files.
@@ -172,7 +172,7 @@ Software
 
 Already available
 ~~~~~~~~~~~~~~~~~
-- Python: ``module load anaconda`` (or anaconda2 for Python 2) (desktops)
+- Python: TODO
 - Matlab: automatically installed on desktops, Ubuntu package
   on laptops.
 
@@ -191,6 +191,8 @@ using one of the following commands:
    as part of the standard environment. Help us to create a good
    standard operating environment!
 
+.. _module-system:
+
 The module system
 ~~~~~~~~~~~~~~~~~
 
@@ -200,6 +202,9 @@ install custom software and newer versions of software, if it is not
 available in Ubuntu. Note that these are shell functions that alter
 environment variables, so this needs to be repeated in each new shell
 (or automated in login).
+
+**Note**: The modules are only available on Aalto desktop machines,
+not on laptops.
 
 -  See the :doc:`Triton module docs <../triton/tut/modules>` docs for
    details.
@@ -215,9 +220,6 @@ environment variables, so this needs to be repeated in each new shell
 
 Useful modules:
 
--  ``anaconda`` and ``anaconda2`` will always be kept up to date with the latest Python
-   Anaconda distribution, and we'll try to keep this in sync across
-   Aalto Linux and Triton.
 - ``triton-modules``: a metamodule that makes other Triton software available.
 
 

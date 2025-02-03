@@ -1,0 +1,10 @@
+name: pytorch-env
+channels:
+  - nvidia
+  - pytorch
+  - conda-forge
+dependencies:
+  - pytorch
+  - pytorch-cuda=12.1
+  - torchvision
+  - torchaudio

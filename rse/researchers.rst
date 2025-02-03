@@ -7,9 +7,7 @@ and it's affecting the quality of your work.  Or maybe you don't know
 how to start your project, or publish it.  You're too busy with the
 science to have time to focus on the computing.
 
-To request a service, contact Aalto Scientific Computing or `answer
-our survey and request to be contacted
-<https://forms.gle/wxnCpCGxdUfGGqfw6>`__ this form.
+To find out more or make a request, contact us.
 
 .. admonition:: Case study: preparation for publication
 
@@ -40,14 +38,22 @@ our survey and request to be contacted
 
 .. admonition:: Case study: sustainability of finished projects
 
-   A project has ended and the main person who managed the code/analysis 
-   pipeline has left to continue their career somewhere else. You wish to 
-   replicate and extend the previous work, but your only starting point is 
-   a folder with hundreds of files and no clear instructions/documentation. 
-   Aalto RSEs can help you re-using and recycling previous code, 
+   A project has ended and the main person who managed the code/analysis
+   pipeline has left to continue their career somewhere else. You wish to
+   replicate and extend the previous work, but your only starting point is
+   a folder with hundreds of files and no clear instructions/documentation.
+   Aalto RSEs can help you re-using and recycling previous code,
    document it, and extend it to make it more sustainable to be reused in
    future projects.
-   
+
+.. admonition:: Case study: outreach and impact
+
+   ChatGPT wasn't in the news just because it was good - it's because
+   it had an excellent interface for the public to test it.
+   Developing and running these services requires a different set of
+   skills than research, and Aalto RSEs can help to make and deploy
+   these services.
+
 
 What we do
 ----------
@@ -61,15 +67,16 @@ a project.** Our goal will be to primarily teaching and mentoring, to
 help you help yourselves in the long run.  We'll point you in the
 right direction and where to look next.
 
-**You can also request longer-term programming as a service.**  This
+**You can also request longer-term work as a service.**  This
 can be producing or modifying some software for you, or whatever you
-may need.  This is expected to be paid from your grants.  (Need someone
+may need.  If it's short, it's covered under basic funding, and if it
+is longer it is expected to be paid from your grants.  (Need someone
 for a few months for your grant?  We can do that.)
 
 .. note:: Master's and Bachelor's students
 
   The RSE service is intended for researchers, but students can be researchers
-  if they are involved in a research project. To get started on anythin longer
+  if they are involved in a research project. To get started on anything longer
   than a short consultation, we would need to meet with your supervisor.
 
 Short-term examples
@@ -147,9 +154,10 @@ How to contact us and request help
 
 To request a service, see :ref:`the request area <request-rse>`.
 
-Requests are prioritized according to:
+Requests are :doc:`prioritized <procedures/prioritization>` according to:
 
+* Short-term "urgent help" for as many projects as possible
+* Priority for projects and units which provide funding
 * Strategic benefit
 * Long-term impact to research (for example, improved skills)
-* Priority for units which provide funding
 * Diversity and balance

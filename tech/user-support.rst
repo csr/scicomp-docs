@@ -5,6 +5,8 @@ User support
 
    `Video recording of this talk <https://www.youtube.com/watch?v=P1ttGhPGuN0&list=PLZLVmS9rf3nN1Rj-TAqFEzFM22Y1kJmvn>`__
 
+   :doc:`user-support-responses`
+
 
 As infrastructure providers, we are often thrust into a user support
 role (as well as a teaching role).  We should look at this as a good
@@ -180,7 +182,7 @@ Email tracker
   - Most users know this and we get few emails
 
 - Aalto IT services uses Efecte, CS uses its own RT (much nicer).
-- Three groups: scicomp, scip (teaching), rse-group (RSE services).
+- Three groups: scicomp, scip (teaching), rse (RSE services).
 
 
 Daily Garage

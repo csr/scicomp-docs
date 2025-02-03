@@ -9,10 +9,12 @@ Remote workflows at Aalto
    this page).  This page explains the options, including other
    systems.
 
+.. admonition:: Video
 
-.. note::
+   Watch this in `video form (winter 2022 kickstart) <https://www.youtube.com/watch?v=Oz37XAzWFhk&list=PLZLVmS9rf3nOKhGHMw4ZY57rO7tQIxk5V&index=4>`__
 
-   How can you work from home?  For that matter, how can you work on more than your desktop/laptop while at work?  There are many options which trade off between graphical interfaces and more power.  Read more for details.
+
+How can you work from home?  For that matter, how can you work on more than your desktop/laptop while at work?  There are many options which trade off between graphical interfaces and more power.  Read more for details.
 
 You have most likely created your own workflow to analyse data at Aalto and most likely you are using a dedicated desktop workstation in Otaniemi. However, with increased mobility of working conditions and recent global events that recommend tele-working, you might be asking yourself: "how do I stop using my workstation at the dept, and get analysis/figures/papers done from home?".
 
@@ -70,7 +72,7 @@ Summary table for remote data analysis workflows
      * Computing resources are limited.
      * Excellent for prototyping, working on the go, doing tests, interactive work (e.g. making figures). More secure access to data.
      * Y
-   * * 4. Aalto Jupyterhub (https://jupyter.triton.aalto.fi)
+   * * 4. Jupyter on Triton (via https://ondemand.triton.aalto.fi)
      * Cloud based - resume work from anywhere.  Includes command line (#6) and batch (#7) easily.  Same data as seen on Triton (/scratch/dept/ and /work/ folders)
      * Jupyter can `become a mess if you aren't careful <https://scicomp.aalto.fi/scicomp/jupyter-pitfalls.html>`__.  You need to plan to scale up with #7 eventually, once your needs increase.
      * Excellent for prototyping, working on the go, doing tests, interactive work (e.g. making figures).  Secure access to data. Use if you know you need to switch to batch jobs eventually (7).
@@ -104,7 +106,7 @@ Summary table for remote data analysis workflows
 
 **Pros**: Computing freedom! You can work anywhere, you can work when there is no internet connection, you do not share the computing resources with other users so you can fully use the power of your computer.
 
-**Cons**: If you work with personal or confidential data, the chances of a data breach increase significantly, especially if you work from public spaces. Even if you encrypt your hard disks (links:https://www.aalto.fi/en/cyber-security-hub-under-construction/aalto-it-securitys-top-10-tips-for-daily-activities )  and even if you are careful, you might be forgetting to lock your computer or somebody behind you might see which password you type. Furthermore, personal computers have limited resources when it comes to RAM/CPUs/GPUs. When you need to scale up your analysis, you want to move it to an HPC cluster, rather than leaving scripts running for days. Finally, although you can connect your Aalto folders to your laptop (link https://scicomp.aalto.fi/aalto/remoteaccess.html and https://scicomp.aalto.fi/triton/tut/storage.html#accessing-and-transferring-files-remotely), when the data size is too big, it is very inefficient to analyse large datasets over the internet.
+**Cons**: If you work with personal or confidential data, the chances of a data breach increase significantly, especially if you work from public spaces. Even if you encrypt your hard disks (links:https://www.aalto.fi/en/cyber-security-hub-under-construction/aalto-it-securitys-top-10-tips-for-daily-activities )  and even if you are careful, you might be forgetting to lock your computer or somebody behind you might see which password you type. Furthermore, personal computers have limited resources when it comes to RAM/CPUs/GPUs. When you need to scale up your analysis, you want to move it to an HPC cluster, rather than leaving scripts running for days. Finally, although you can connect your Aalto folders to your laptop (link :doc:`/aalto/remoteaccess` and :doc:`/triton/tut/remotedata`), when the data size is too big, it is very inefficient to analyse large datasets over the internet.
 
 **Recommendation**: Own computer is excellent for prototyping data analysis scripts, working on the go, doing tests or new developments. You shouldn’t use this option if you are working with personal data or with other confidential data. You shouldn’t use this option if your computational needs are much bigger.
 
@@ -129,7 +131,7 @@ Summary table for remote data analysis workflows
 4. Aalto Jupyterhub
 -------------------
 
-**Description**: Jupyter notebooks are a way of interactive, web-based computing: instead of either scripts or interactive shells, the notebooks allow you to see a whole script + output and experiment interactively and visually. They are good for developing and testing things, but once things work and you need to scale up, it is best to put your code into proper programs. Triton’s JupyterHub is available at https://jupyter.triton.aalto.fi . Read more about it at: https://scicomp.aalto.fi/triton/apps/jupyter.html. `Triton account required <https://scicomp.aalto.fi/triton/accounts.html>`__.
+**Description**: Jupyter notebooks are a way of interactive, web-based computing: instead of either scripts or interactive shells, the notebooks allow you to see a whole script + output and experiment interactively and visually. They are good for developing and testing things, but once things work and you need to scale up, it is best to put your code into proper programs. Triton’s Jupyter is available at https://ondemand.triton.aalto.fi . Read more about it at: https://scicomp.aalto.fi/triton/apps/jupyter.html. `Triton account required <https://scicomp.aalto.fi/triton/accounts.html>`__.
 
 **Pros**: JupyterHub it has similar advantages than #4, although data and code are accessed through the JupyterHub interface.  In addition, things can stay running in the cloud.  Although it can be used with R or Matlab, Python users will most likely find this to be a very familiar and comfortable prototyping environment. Similar to the VDI case, you can resume workflow (there are sessions of different lengths).  You also also access Triton shell and batch (#6, #7) in the Jupyter interface, and it's easy to scale up and use them all together.
 

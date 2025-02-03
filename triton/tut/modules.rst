@@ -2,9 +2,7 @@
 Software modules
 ================
 
-.. admonition:: Video
-
-   `Watch this in the Winter Kickstart 2021 course <https://www.youtube.com/watch?v=dOWBGBdqT4g&list=PLZLVmS9rf3nN_tMPgqoUQac9bTjZw8JYc&index=9>`__
+.. include:: /triton/ref/videos.rst
 
 There are hundreds of people using every cluster.  They all have different
 software needs, including conflicting versions required for different
@@ -16,11 +14,15 @@ problem.  Software installation and management takes up a huge amount
 of our time, but we try to make it easy for our users.  Still, it can
 end up taking a lot of your effort as well.
 
-.. admonition:: Cheatsheet
+.. admonition:: Abstract
 
    * We use the standard `Lmod module system
      <https://lmod.readthedocs.io/>`__, which makes more software
-     available by adjusting environment variables like ``PATH``
+     available by adjusting environment variables like ``PATH``.
+   * ``module spider NAME`` searches for NAME.
+   * ``module load NAME`` loads the module of that name.  Sometimes,
+     it can't until you ``module load`` something else (read the
+     ``module spider`` message carefully).
    * See the :doc:`../ref/index` for a ``module`` command cheatsheet.
 
 .. admonition:: Local differences
@@ -47,41 +49,35 @@ software by default for every user.
 A module lets you adjust what software is available,
 and makes it easy to switch between different versions.
 
-As an example, let's inspect the ``gcc`` module (abbreviated output
-shown) with ``module show gcc``:
+As an example, let's inspect the ``triton_base_python`` module with ``module
+show scicomp-python-env``:
 
 .. highlight:: console
 
 .. code-block:: console
 
-    $ module show gcc
-    ----------------------------------------------------------------------------------------------
-       /share/apps/spack/envs/fgci-centos7-generic/lmod/linux-centos7-x86_64/all/gcc/9.2.0.lua:
-    ----------------------------------------------------------------------------------------------
-    whatis("Name : gcc")
-    whatis("Version : 9.2.0")
-    whatis("Short description : The GNU Compiler Collection includes front ends for C, C++, Objective-C, Fortran, Ada, and Go, as well as libraries for these languages.")
-    whatis("Configure options : --disable-multilib --enable-languages=c,c++,fortran --with-mpfr=/share/apps/spack/envs/fgci-centos7-generic/software/mpfr/3.1.6/m6xmzws --with-gmp=/share/apps/spack/envs/fgci-centos7-generic/software/gmp/6.1.2/mnsg5g2 --enable-lto --with-quad --with-system-zlib --with-mpc=/share/apps/spack/envs/fgci-centos7-generic/software/mpc/1.1.0/uaijipe --with-isl=/share/apps/spack/envs/fgci-centos7-generic/software/isl/0.19/indu5p6")
-    help([[The GNU Compiler Collection includes front ends for C, C++, Objective-C,
-    Fortran, Ada, and Go, as well as libraries for these languages.]])
-    family("compiler")
-    prepend_path("PATH","/share/apps/spack/envs/fgci-centos7-generic/software/gcc/9.2.0/dnrscms/bin")
-    prepend_path("MANPATH","/share/apps/spack/envs/fgci-centos7-generic/software/gcc/9.2.0/dnrscms/share/man")
-    prepend_path("LIBRARY_PATH","/share/apps/spack/envs/fgci-centos7-generic/software/gcc/9.2.0/dnrscms/lib")
-    prepend_path("LD_LIBRARY_PATH","/share/apps/spack/envs/fgci-centos7-generic/software/gcc/9.2.0/dnrscms/lib")
-    prepend_path("LIBRARY_PATH","/share/apps/spack/envs/fgci-centos7-generic/software/gcc/9.2.0/dnrscms/lib64")
-    prepend_path("LD_LIBRARY_PATH","/share/apps/spack/envs/fgci-centos7-generic/software/gcc/9.2.0/dnrscms/lib64")
-    prepend_path("CPATH","/share/apps/spack/envs/fgci-centos7-generic/software/gcc/9.2.0/dnrscms/include")
-    prepend_path("CMAKE_PREFIX_PATH","/share/apps/spack/envs/fgci-centos7-generic/software/gcc/9.2.0/dnrscms/")
-    setenv("CC","/share/apps/spack/envs/fgci-centos7-generic/software/gcc/9.2.0/dnrscms/bin/gcc")
-    setenv("CXX","/share/apps/spack/envs/fgci-centos7-generic/software/gcc/9.2.0/dnrscms/bin/g++")
-    ...
+    $ module show scicomp-python-env
+    ----------------------------------------------------------------------------
+      /appl/scibuilder-mamba/aalto-rhel9/prod/modules/scicomp-python-env/2024-01.lua:
+    ----------------------------------------------------------------------------
+    whatis("Name : scicomp-python-env")
+    whatis("Version : 2024-01")
+    help([[This is an Aalto Scientific Computing managed Python environment with various packages.]])
+    family("conda")
+    prepend_path("PATH","/appl/scibuilder-mamba/aalto-rhel9/prod/software/scicomp-python-env/2024-01/f56a564/bin")
+    setenv("CONDA_PREFIX","/appl/scibuilder-mamba/aalto-rhel9/prod/software/scicomp-python-env/2024-01/f56a564")
+    setenv("GUROBI_HOME","/appl/scibuilder-mamba/aalto-rhel9/prod/software/scicomp-python-env/2024-01/f56a564")
+    setenv("GRB_LICENSE_FILE","/appl/manual_installations/software/gurobi/license/gurobi.lic")
+    setenv("OMPI_MCA_btl_openib_allow_ib","true")
+    setenv("SLURM_MPI_TYPE","pmix")
+    setenv("PMIX_MCA_psec","^munge")
 
-The command ``module show gcc`` shows some meta-info (name of the module, its version, etc.)
+
+The command shows some meta-info (name of the module, its version, etc.)
 When you load this module, it adjusts various environment paths (as
 you see there),
-so that when you type ``gcc`` it runs the program from
-``/share/apps/spack/envs/fgci-centos7-generic/software/gcc/9.2.0/dnrscms/bin/gcc``.
+so that when you type ``python`` it runs the program from
+``/appl/scibuilder-mamba/aalto-rhel9/prod/software/scicomp-python-env/2024-01/f56a564/bin``.
 This is almost magic: we can have many versions of any software installed,
 and everyone can pick what they want, with no conflicts.
 
@@ -94,199 +90,161 @@ Let's dive right into an example and load a module.
 
 .. admonition:: Local differences
 
-   If you are not at Aalto, but in Finland (but not at CSC),
-   then you need to run ``module load
-   fgci-common`` first, before any of the other commands will work
-   (and you will need to *keep doing this* for every other tutorial in
-   this series).  You have to do this *every time you start a new shell*.
-   If you are at CSC or not in Finland, the concepts here also apply to
-   you, but the actual names of the modules loaded may differ.
+   If you are not at Aalto, you need to figure out what modules exist
+   for you.  The basic princples probably work on almost any cluster.
 
-Let's assume you've written a Python script that is only compatible with Python version 3.7.0 or higher.
-You open a shell to find out where and what version our Python is. The
-**which** program looks up the current detected version of a program -
-very useful when testing modules.::
+Let's assume you've written a Python script that is only compatible
+with Python version 3.7.0 or higher. You open a shell to find out
+where and what version our Python is. The ``type`` program looks up
+the current detected version of a program - very useful when testing
+modules (if this doesn't work, use ``which``).::
 
-  $ which python3
-  /usr/bin/python3
+  $ type python3
+  python3 is /usr/bin/python3
   $ python3 -V
-  Python 3.6.8
+  Python 3.9.18
 
-But you need a newer version of Python.  To this end, you can **load** the ``anaconda`` module
-using the ``module load anaconda`` command,
-that has a more up to date Python with lots of libraries already included::
+But you need a newer version of Python.  To this end, you can **load**
+the ``scicomp-python-env`` module using the ``module load scicomp-python-env`` command,
+that has a more up to date Python with lots of libraries already
+included::
 
-  $ module load anaconda
-  $ which python
-  /share/apps/anaconda-ci/fgci-centos7-generic/software/anaconda/2020-03-tf2/521551bc/bin/python
-  $ python -V
-  Python 3.6.10 :: Anaconda, Inc.
+  $ module load scicomp-python-env
+  $ type python3
+  python3 is /appl/scibuilder-mamba/aalto-rhel9/prod/software/scicomp-python-env/2024-01/f56a564/bin/python
+  $ python3 -V
+  Python 3.11.9
 
-As you see, you now have a newer version of Python, in a different directory.
+As you see, you now have a newer version of Python, in a different
+directory.
 
-You can see a list of the all the loaded modules in our working shell using the ``module list`` command::
+You can see a list of the all the loaded modules in our working shell
+using the ``module list`` command::
 
   $ module list
   Currently Loaded Modules:
-    1) anaconda/2020-03-tf2
+    1) scicomp-python-env/2023-01
 
 .. note::
   The ``module load`` and ``module list`` commands can be abbreviated as ``ml``
 
 
-Let's  use the ``module purge`` command to **unload** all the loaded modules (``anaconda`` in this case)::
+Let's  use the ``module purge`` command to **unload** all the loaded
+modules::
 
   $ module purge
 
-Or explicitly unload the ``anaconda`` module by using the ``module unload anaconda`` command::
+Or explicitly unload the ``scicomp-python-env`` module by using the ``module
+unload scicomp-python-env`` command::
 
-  $ module unload anaconda
+  $ module unload scicomp-python-env
 
-You can load any number of modules in your open shell,
-your scripts, etc.  You could load modules in your
-``~/.bash_profile``, but then it will always automatically load it -
-perhaps even if you don't expect it.  Watch out for this if you get
-un-explainable bugs - it may be best to explicitly load what you
-need.
+You can load any number of modules in your open shell, your scripts,
+etc.  You could load modules in your ``~/.bash_profile``, but then it
+will always automatically load it - this causes unexplainable bugs
+regularly!
 
+.. warning::
 
-
-Type-along: Where is Matlab?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Let's say you want to use Matlab.  You log in and try in the shell::
-
-  $ matlab
-  -bash: matlab: command not found
-
-So first search for it using the ``module spider`` command::
-
-  $ module spider matlab
-
-  ----------------------------------------------------------------------------
-    matlab:
-  ----------------------------------------------------------------------------
-       Versions:
-	  matlab/r2012a
-	  matlab/r2014a
-	  matlab/r2015b
-	  matlab/r2016a
-	  matlab/r2016b
-	  matlab/r2017b
-	  matlab/r2018a
-	  matlab/r2018b
-	  matlab/r2019a
-	  matlab/r2019b
-
-
-We see there are a lot of versions available.
-
-Load the latest version of Matlab as::
-
-  $ module load matlab
-
-It never hurts to double check the version and in fact is recommended. So let's do just that::
-
-  $ module list
-  Currently Loaded Modules:
-    1) matlab/r2019b
-
-
-
-Type-along: Where is R?
-^^^^^^^^^^^^^^^^^^^^^^^
-If you don't specify the version - just as the above Matlab example - the default version of the module is usually loaded, which is usually the latest version.
-The default version, however,is not always latest version.  To see an example, let's see what versions of R are available::
-
-  $ module spider r
-
-  ----------------------------------------------------------------------------
-    r:
-  ----------------------------------------------------------------------------
-       Versions:
-	  r/3.4.3-python-2.7.14
-	  r/3.4.3-python2
-	  r/3.4.3-python3
-	  r/3.5.0-python-2.7.14
-	  r/3.5.0-python2
-	  r/3.5.3-python-2.7.14
-	  r/3.6.1-python3
-
-Let's try loading the default version::
-
-  $ module load r
-
-You can list all the dependencies the R module requires and loads::
-
-  $ module list
-  Currently Loaded Modules:
-    1) pcre/8.42        12) libpthread-stubs/0.4  23) libxml2/2.9.9        34) jdk/8u181-b13          45) libice/1.0.9
-    2) ncurses/6.1      13) xproto/7.0.31         24) font-util/1.3.2      35) fontconfig/2.12.3      46) libx11/1.6.7
-    3) zlib/1.2.11      14) libxau/1.0.8          25) libxft/2.3.2         36) pixman/0.34.0          47) libsm/1.2.2
-    4) readline/7.0     15) libxcb/1.13           26) tk/8.6.8             37) cairo/1.14.12-python2  48) libxt/1.1.5
-    5) sqlite/3.23.1    16) libxext/1.3.3         27) python/2.7.15        38) libjpeg-turbo/1.5.90   49) harfbuzz/1.4.6-python2
-    6) openssl/1.0.2k   17) libxscrnsaver/1.2.2   28) tar/1.31             39) libtiff/4.0.9          50) gobject-introspection/1.49.2-python2
-    7) tcl/8.6.8        18) libpng/1.6.34         29) gettext/0.19.8.1     40) bzip2/1.0.6            51) pango/1.41.0-python2
-    8) kbproto/1.0.7    19) renderproto/0.11.1    30) gdbm/1.18.1          41) freetype/2.7.1         52) openblas/0.3.2
-    9) xextproto/7.3.0  20) libxrender/0.9.10     31) perl/5.26.2          42) libssh2/1.8.0          53) r/3.4.3-python2
-   10) libbsd/0.9.1     21) libiconv/1.15         32) libffi/3.2.1         43) curl/7.60.0
-   11) libxdmcp/1.1.2   22) xz/5.2.4              33) glib/2.56.1-python2  44) icu4c/60.1
-
-The last loaded module clearly shows that the version of the R loaded is ``r/3.4.3-python2``.
-To load the latest version of R, use the *fullName* of the module::
-
-  $ module load r/3.6.1-python3
-
+  We regularly see problems caused by something in ``~/.bash_profile`` /
+  ``~/.bash_rc`` affecting other unrelated software in
+  hard-to-understand ways.  Be very cautious about anything in your
+  shell startup files, and always remove it as a first debugging step.
 
 
 Module versions
 ---------------
 
-What's the difference between ``module load r`` and ``module load
-r/3.6.1-python3``?
+What's the difference between ``module load scicomp-python-env`` and
+``module load scicomp-python-env/2024-01``?
 
-The first loading ``r`` loads the version that Lmod assumes to be the
-latest one. **This is necessarily not the latest one.** The second loading
-``r/3.6.1-python3`` loads that exact version, which is supposed to not
-change.  If you're not interested about the specific version, you can load it
-without the version (but then *when* stuff randomly stops working, you're
-going to have to figure out what happened).  Once you are past that
-(possibly from day one!), it's usually a good idea to load specific
-version, so that your environment will stay the same until you are
-done.
+The first ``scicomp-python-env`` loads the version that Lmod assumes to
+be the latest one - which might change someday!  Suddenly, things don't
+work anymore and you have to fix them.
 
-This is most important for compiled software, but applies to
-everything.
+The second loading ``scicomp-python-env/2024-01`` loads that exact version,
+which won't change.  Once you want stability (possibly from day one!), it's
+usually a good idea to load specific version, so that your environment
+will stay the same until you are done.
+
+
+
+Hierarchical modules
+--------------------
+
+Hierarchical modules means that you have to load one module before you
+can load another.  This is usually a compiler:
+
+**Warning: This example is not yet updated for new-Triton and won't work
+anymore.  The concept still applies.**
+
+For example, let's load a newer version of R:
+
+.. code-block:: console
+  :emphasize-lines: 3-4
+
+  $ module load r/4.2.2
+  Lmod has detected the following error:  These module(s) or
+  extension(s) exist but cannot be loaded as requested: "r/4.2.2"
+     Try: "module spider r/4.2.2" to see how to load the module(s).
+
+Lmod says that the modules exist but can't be loaded, but gives a hint
+for what to do next.  Let's do that:
+
+.. code-block:: console
+   :emphasize-lines: 7-9
+
+   $ module spider r/4.2.2
+
+   ----------------------------------------------------------------------------
+     r: r/4.2.2
+   ----------------------------------------------------------------------------
+
+       You will need to load all module(s) on any one of the lines below before the "r/4.2.2" module is available to load.
+
+   gcc/11.3.0
+
+       Help:
+       ...
+
+So now we can load it (we can do it in one line)::
+
+  $ module load gcc/11.3.0 r/4.2.2
+  $ R --version
+  R version 4.2.2 (2022-10-31) -- "Innocent and Trusting"
+
 
 
 
 What's going on under the hood here?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------------------
 
 In Linux systems, different environment variables like ``$PATH`` and
-``$LD_LIBRARY_PATH`` help figure out how to run programs.  Modules just
-cleverly manipulate these so that you can find the software you need,
-even if there are multiple versions available.  You can see these variables
-with the **echo** command, e.g. ``echo $PATH``.
+``$LD_LIBRARY_PATH`` help figure out how to run programs.  Modules
+just cleverly manipulate these so that you can find the software you
+need, even if there are multiple versions available.  You can see
+these variables with the **echo** command, e.g. ``echo $PATH``.
 
-When you load a module in a shell, the module command changes the current shell's environment variables,
-and the environment variables are passed on to all the child processes.
+When you load a module in a shell, the module command changes the
+current shell's environment variables, and the environment variables
+are passed on to all the child processes.
 
-You can explore more with ``module show $NAME``.
+You can explore more with ``module show NAME``.
 
 
 
 Making a module collection
 --------------------------
 
-There is a basic dependency/conflict system to handle module dependency.
-Each time you load a module, it resolves all the dependencies. This
-can result in long loading times or be annoying to do each time you
-log in to the system. However, there is a solution: 
-``module save $collection_name`` and ``module restore
-$collection_name``
+There is a basic dependency/conflict system to handle module
+dependency. Each time you load a module, it resolves all the
+dependencies. This can result in long loading times or be annoying to
+do each time you log in to the system. However, there is a solution:
+``module save COLLECTION_NAME`` and ``module restore COLLECTION_NAME``
 
-Let's see how to do this in an example.
+Let's see how to do this in an example.  **Warning: This example is not
+yet updated for new-Triton and won't work anymore.  The concept still
+applies.**
 
 Let's say that for compiling / running your program you need:
 
@@ -302,21 +260,21 @@ You could run this each time you want to compile/run your code::
   $ module list           # 15 modules
 
 Let's say this environment works for you. Now you can save it with
-``module save my-env``.  Then ``module purge`` to
-unload everything.  Now, do ``module restore my-env``::
+``module save MY-ENV-NAME``.  Then ``module purge`` to unload
+everything.  Now, do ``module restore MY-ENV-NAME``::
 
   $ module save my-env
   $ module purge
   $ module restore my-env
   $ module list           # same 15 modules
 
-Generally, it is a good idea to save your modules
-as a collection to have your desired modules
-all set up each time you want to re-compile/re-build.
+Generally, it is a good idea to save your modules as a collection to
+have your desired modules all set up each time you want to
+re-compile/re-build.
 
-So the subsequent times that you want to compile/build,
-you simply ``module restore my-env`` and this way
-you can be sure you have the same previous environment.
+So the subsequent times that you want to compile/build, you simply
+``module restore my-env`` and this way you can be sure you have the
+same previous environment.
 
 .. note::
   You may occasionally need to rebuild your collections in case we
@@ -352,8 +310,9 @@ shell-specific and set environment variables.
 Triton modules are also available on Aalto Linux: use ``module load
 triton-modules`` to make them available.
 
-Some modules are provided by Aalto Science-IT, some by CSC.  You could
-even `make your own user modules
+Some modules are provided by Aalto Science-IT, and on some clusters
+they could be provided by others, too.  You could even `make your own
+user modules
 <https://lmod.readthedocs.io/en/latest/020_advanced.html>`__.
 
 
@@ -363,15 +322,23 @@ Exercises
 
 Before each exercise, run ``module purge`` to clear all modules.
 
-Then, if you are in the FCCI (Finnish universities) but not at Aalto,
-run ``module load fgci-common`` before the exercises to make the Aalto
-modules available.
+If you aren't at Aalto, many of these things won't work - you'll have
+to check your local documentation for what the equivalents are.
 
 .. exercise:: Modules-1: Basics
 
    ``module avail`` and check what you see.  Find a software that has
    many different versions available.
    Load the oldest version.
+
+   .. solution::
+
+      Let's use scicomp-python-env as an example. To see all available
+      versions of scicomp-python-env, we can either use ``module avail
+      scicomp-python-env`` or the better option ``module spider
+      scicomp-python-env``. The oldest version of the module is
+      ``scicomp-python-env/2024-01``. We can load it using ``module load
+      scicomp-python-env/2024-01``.
 
 .. exercise:: Modules-2: Modules and PATH
 
@@ -383,36 +350,103 @@ modules available.
    full path of what will be run for a given command name - basically
    it looks up the command in ``PATH``
 
-   * Run ``echo $PATH`` and ``type python``.
-   * ``module load anaconda``
-   * Re-run ``echo $PATH`` and ``type python``.  How does it change?
+   * Run ``echo $PATH`` and ``type python3``.
+   * ``module load scicomp-python-env``
+   * Re-run ``echo $PATH`` and ``type python3``.  How does it change?
+
+   .. solution::
+
+      Did you remember to reset your modules before starting?  Do this
+      before every exercise, even if we don't say it every time.
+
+      ::
+
+        $ module purge
+
+      The initial state should look something like this.  Your PATH is
+      most likely longer and doesn't have to look exactly like this::
+
+        $ echo $PATH
+         .../usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/ibutils/bin...
+        $ type python
+        python is /usr/bin/python
+
+      Then we load our module::
+
+        $ module load scicomp-python-env
+
+      Then we look at our final state::
+
+        $ echo $PATH
+        /appl/scibuilder-mamba/aalto-rhel9/prod/software/scicomp-python-env/2024-01/f56a564/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/darstr1/bin
+        $ type python3
+        python3 is /appl/scibuilder-mamba/aalto-rhel9/prod/software/scicomp-python-env/2024-01/f56a564/bin/python3
+
+      We see that ``$PATH`` and ``python3`` have been adjusted.
+
+
 
 .. exercise:: Modules-3: Complex module and PATH
 
-   Check the value of ``$PATH``.  Then, load the module ``py-gpaw``.
+   Check the value of ``$PATH``.  Then, load the module ``cmake``.
    List what it loaded.  Check the value of ``PATH`` again.  Why is
    there so much stuff?  Can you find a module command that explains
    it?
 
-.. exercise:: (advanced) Modules-4: Modules and PATH
+   .. solution::
 
-   Same as number 2, but use ``env | sort >
-   filename`` to store environment variables, then swap to
-   ``py-gpaw/1.3.0-openmpi-scalapack-python3``.
-   Do the same, and compare the two outputs using ``diff``.
+      Running ``module list`` shows you that 11 modules have been
+      loaded. All of these are dependencies of ``cmake``, and as such
+      were loaded alongside it. You can see dependencies of a module
+      using ``module show NAME``. In the case of ``module show cmake``
+      you can see that ``cmake`` loads several other modules when it
+      is loaded. Some of these models also load their own depedencies.
+
+.. exercise:: Hierarchical modules
+
+   How can you load the module ``quantum-espresso/7.2``::
+
+     $ module load quantum-espresso/7.2
+     Lmod has detected the following error:  These module(s) or
+     extension(s) exist but cannot be loaded as requested: "quantum-espresso/7.2"
+        Try: "module spider quantum-espresso/7.2" to see how to load the module(s).
+
+
+   .. solution::
+
+      This is a double-hierarchical module, that is built using two
+      different toolchains, so you have a choice to make when loading::
+
+        $ module spider quantum-espresso/7.2
+        ...
+        You will need to load all module(s) on any one of the lines
+        below before the "openfoam-org/11" module is available to load.
+
+        openmpi/4.1.6
+        scibuilder-spack-dev/2024-01  openmpi/4.1.6
+
+      So here we go, loaded and we use ``which`` to verify one of the
+      programs can be found::
+
+         $ module load openmpi/4.1.6 quantum-espresso/7.2
+         $ which pw.x
+         /appl/scibuilder-spack/aalto-rhel9-dev/2024-01/software/linux-rhel9-haswell/gcc-12.3.0/quantum-espresso-7.2-kmqslxn/bin/pw.x
+
+
 
 .. exercise:: Modules-5: Modules and dependencies
 
-   Load a module with many dependencies, such as
-   ``r-ggplot2`` and save it as a collection.  Compare the time
-   needed to load the module and the collection.  (Does ``time``
-   not work?  Change your shell to bash, see the previous tutorial)
+   Load a module with many dependencies, such as ``geant4`` and
+   save it as a collection.  Purge your modules, and restore the
+   collection.
 
-.. exercise:: (advanced) Modules-6: Module contents
+   .. solution::
 
-   Load ``openfoam-org/7-openmpi-metis``.
-   Use ``which`` to find where executable ``blockMesh`` is
-   coming from and then use ``ldd`` to find out what libraries it uses.
+      Save the collection with ``module save my_env``. After ``module purge``
+      you can load your collection again with ``module restore my_env``. Making a
+      collection can be particularily useful if you have a job that depends on a large
+      number of separate modules, in which case a collection saves you the trouble of
+      loading them one by one.
 
 
 

@@ -12,22 +12,32 @@ What is this course?
 --------------------
 
 
+Who are we?
+~~~~~~~~~~~
+
+* Instructors introduce themselves.
+* A collaboration of CodeRefinery partners and more, in particular in
+  Sweden and Norway: https://coderefinery.org
+* Coordinated by Aalto Scientific Computing: https://scicomp.aalto.fi/
+* More than ten different instructors, about as many other helpers, too.
+
+
 Course contents
 ~~~~~~~~~~~~~~~
 
-* **Day 1:** Basic tools (jupyter, numpy, pandas)
+* **Day 1:** Basic tools (jupyter, numpy, pandas, xarray)
 
-* **Day 2:** Still fairly basic (pandas continued, visualization, data formats)
+* **Day 2:** More specialized tools (working with data, plotting, scripts,
+  productivity tools)
 
-* **Day 3:** More specialized tools (scripting, libraries, parallel)
-
-* **Day 4:** Again more special tools (dependencies and environments,
-  Binder, packaging)
+* **Day 3:** Even more specialized (libraries, dependencies and
+  packaging, parallel programming)
 
 * If early days are too boring for you, don't skip the later days!
 
-* We will adjust the schedule as needed.
+* If later days get too complex for you, it's OK!
 
+* We will adjust the schedule as needed.
 
 
 How to attend?
@@ -50,16 +60,6 @@ How to attend?
 
 
 
-Who are we?
-~~~~~~~~~~~
-
-* Aalto Scientific Computing: https://scicomp.aalto.fi/about/
-* In collaborations with CodeRefinery partners, in particular in
-  Sweden and Norway: https://coderefinery.org
-* Eight different instructors, about as many other helpers, too.
-
-
-
 Practicalities
 --------------
 
@@ -78,14 +78,12 @@ We have an interesting strategy:
 - Livestream broadcast, like a TV production.
 - Anyone can watch.
 - There are pauses for exercises, you can work (alone or in groups).
-- Our university's people can be in Zoom and switch there for exercise
-  sessions.
 
 There are many parts of the workshop:
 
 - Talking and demos (livestream)
 - Type-along (livesteam)
-- Exercises (Zoom or alone or your own groups)
+- Exercises (In your own groups or alone)
 - Breaks, at least 10 minutes/hour
 
 
@@ -93,12 +91,12 @@ There are many parts of the workshop:
 Chat and communication
 ~~~~~~~~~~~~~~~~~~~~~~
 
-- Please don't use the chat for questions: who can keep track?
+- Please don't use the steam chat for questions: who can keep track?
 
   - Instructors won't see
   - But you can for practical questions
 
-- Use HackMD for chat: questions in bullet points:
+- Use the **Notes** for chat: questions in bullet points:
 
   .. image:: https://coderefinery.github.io/manuals/_images/hackmd--questions2.png
      :alt: View and edit modes at top
@@ -119,14 +117,14 @@ Chat and communication
 
 - Don't get information overload!  The point is you can read later.
 
-- **Don't include names or identifies in HackMD: it is public and will
+- **Don't include names or identifies in the Notes: it is public and will
   be permanently archived.**
 
-- HackMD might get overloaded with the number of people we have.  If
+- The Notes might get overloaded with the number of people we have.  If
   so, we have backup plans and will adjust. (consider overload as a
   "isn't it cool" situation).  Pay attention to our instructions.
 
-Exercise: **Icebreaker: Please answer the icebreaker question in HackMD**
+Exercise: **Icebreaker: Please answer the icebreaker question in the Notes**
 
 
 
@@ -138,11 +136,14 @@ Arranging your screen is surprisingly difficult!
 - We share a vertical window, so half of the screen is for us, and
   half is for demos.
 - The other half is for web browsers, your workspace, etc.  Have
-  HackMD easy to access!
+  the Notes easy to access!
+- Use the settings to force the highest resolution.
 
 .. figure:: https://coderefinery.github.io/manuals/_images/layout--learner-livestream-sidebyside-onebrowser.png
 
-   Screen layout with livestream on one side and learner on other side.
+   Screen layout with livestream on one side and learner workspace on
+   other side.  You might have two browsers open, Jupyter and
+   the course material.
 
 
 
@@ -153,29 +154,15 @@ There is so much information!  What should we look?
 
 - **Screenshare and lecture**
 - **Your own type-along**
-- HackMD (all important links should be pasted here)
+- Notes (all important links should be pasted here)
 
   - Only look at the bottom.
   - Come back and read detailed answers later, not during.
 
-- Zoom or your own exercise group (during the exercises, optional).
+- The exercises (your group or alone) (during the exercises, optional).
 
-- Lesson webpage (as needed, direct links in HackMD)
+- Lesson webpage (as needed, direct links in Notes)
 
-
-
-When do you switch between the stream/exercise Zoom?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-If you have registered and are from a participating institution, you
-have a Zoom link for exercise sessions.  This is optional.
-
-- **During main lectures,** you look at the livestream + follow along.
-- **During exercise sessions,** you will be told to switch to Zoom if
-  you have it (livestream is quiet)
-- **After exercise sessions** you will hear the livestream become
-  active again, and know it is time to come back.
-- We will be explicit at every step of the way.
 
 
 
@@ -189,16 +176,18 @@ What can go wrong?
 * **Instructors make a mistake:** this is by design!  You learn by
   seeing things not work.  We try to let some mistakes in so you can
   see them.
-* **HackMD stops responding:** We have so many people we *expect*
-  HackMD to lag - this is an experiment.  Wait some and it hopefully
+* **Notes stops responding:** We have so many people that it might
+  lag.  Wait some and it hopefully
   will pass.  We try to keep it short for this (move old text to
-  another HackMD).  Please stay in "view mode" when not editing.  We
-  have a backup planned.
-* **The stream dies:** something has happened to the director's
+  an archive Notes, see link at top).  Please stay in "view mode" when
+  not editing.  We have a backup planned.
+* **The stream dies:** something has happened to the broadcaster's
   computer.  Stick around, it will resume soon.
 * **The internet dies:** This happened in a previous course (Fastly
-  CDN problems).  Wait around, we see what happens.  Remember, we have
+  CDN problem).  Wait around, we see what happens.  Remember, we have
   videos no matter what.
+* **a CAT disrupts the instructors:** wait, this is the opposite of a
+  problem.
 
 
 
@@ -206,16 +195,18 @@ Videos
 ~~~~~~
 
 * You miss a day or want to review?  No problem.
-* Videos are available on Twitch for 14 days
-* ... and YouTube after we process them (0-1 days)
+* Videos are available on Twitch for 7 days
+* ... and YouTube after we process them
 
 
 
 Be respectful and helpful
 -------------------------
 
+Being respectful is a condition of interaction.
+
 It is actually hard to teach and mentor for tech like this.  The
-course is much more than "only" instructors..
+course is much more than "only" instructors.
 
 We leave you with four pieces of advice for now:
 
@@ -226,7 +217,7 @@ We leave you with four pieces of advice for now:
   course when you are helping others.
 - **Take time to check in.** For example, ask "how's it going? is
   everyone getting what they need?", in breakout rooms.
-- **When something isn't going right, speak (or HackMD) up quickly**.
+- **When something isn't going right, speak (or Notes) up quickly**.
   We want to help, even if the answer is "let's discuss later".
 
 
@@ -235,11 +226,10 @@ We leave you with four pieces of advice for now:
 Final notes
 -----------
 
-Credit points
-~~~~~~~~~~~~~
+Certificates
+~~~~~~~~~~~~
 
-- We don't assign credits for attending this course - we can't track
-  attendance.
+- See the course webpage for information.
 
 
 
@@ -249,9 +239,13 @@ Keep in touch if you want (and volunteer)
 - We would he happy to have help with our activities
 - Our chat https://coderefinery.zulipchat.com/ (stream
   #python-for-scicomp), in case you want to chat with us.
-- Twitter: #pythonSC21, `@coderefine
-  <https://twitter.com/coderefine>`__ (not -ry) and `SciCompAalto
-  <https://twitter.com/SciCompAalto>`__
+- Social Media: Mastodon `@SciCompAalto@fosstodon.org
+  <https://fosstodon.org/@SciCompAalto>`__ and
+  `@coderefinery@fosstodon.org
+  <https://fosstodon.org/@coderefinery>`__ (preferred), Twitter
+  `@coderefine <https://twitter.com/coderefine>`__ (not -ry) and
+  `SciCompAalto <https://twitter.com/SciCompAalto>`__,
+  #PythonForSciComp
 
 
 
@@ -260,5 +254,5 @@ Other workshops
 
 - Consider attending a "real" CodeRefinery workshop, with more
   practical skills about the development side of things:
-  https://coderefinery.org
-- Sign up for the CodeRefinery newsletter
+  https://coderefinery.org (next one in spring 2025)
+- Sign up for the CodeRefinery newsletter to get announcements.

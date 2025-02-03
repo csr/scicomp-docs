@@ -1,6 +1,12 @@
 Nbgrader basics
 ===============
 
+.. note::
+
+    We have prepared a tutorial for students on how to
+    fetch/submit assignments: :doc:`../jupyterhub/nbgrader-jupyterlab`.
+    Feel free to share it with them/link to it in MyCourses pages.
+
 "nbgrader is a tool that facilitates creating and grading assignments
 in the Jupyter notebook. It allows instructors to easily create
 notebook-based assignments that include both coding exercises and
@@ -10,7 +16,9 @@ upstream documentation*
 
 Currently you should read the upstream `nbgrader documentation
 <https://nbgrader.readthedocs.io/en/stable/>`__, which we don't
-repeat.  We have some custom Aalto modifications (also submitted
+repeat. You might also find the Noteable services' `nbgrader documentation
+<https://noteable.edina.ac.uk/documentation/>`__ useful.
+We have some custom Aalto modifications (also submitted
 upstream) which are:
 
 How to use nbgrader
@@ -62,6 +70,9 @@ Aalto specifics
 
 - Join the :ref:`shared course repository <jupyterhub-courses-repo>`
   to share knowledge with others
+
+- Instructors can create a file ``etc.jupyter.nbgrader_config.py.append`` in their ``/course/`` directory. The configuration provided in this file gets appended to ``/etc/jupyter/nbgrader_config.py`` and overwrites the prior default configuration. You can use this file to set the custom settings such as late submission policy or grade exporter for your course.
+
 
 To use nbgrader:
 

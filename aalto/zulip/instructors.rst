@@ -7,7 +7,7 @@ Introduction
 Zulip is an online discussion tool with latex support. It has been used by some
 Aalto teachers as an external service on individual courses. For spring and summer 2021,
 Zulip was provided by Aalto CS as a pilot solution for all School of Science
-departments' course needs. For the autumn 2021, the pilot at SCI continues and is widened in small scale also for other schools. 
+departments' course needs. For the autumn 2021 and spring 2022, the pilot at SCI continues and is widened in small scale also for other schools. 
 The pilot refers to a) a fixed-term project
 with clear lifecycle needs, like in courses which start and end at certain
 times and after which the Zulip instance can be deleted; b) a
@@ -32,21 +32,16 @@ Get started / request Zulip
 
 .. note::
 
-    Request a chat instance at https://webropol.com/s/zuliprequest
-
-    We are taking in chat instance requests for 2021 autumn courses. Note that the chat
-    instances will be removed after the course has ended.
+   Chat realms can be requested using the form at `https://zulip.aalto.fi/requests/ <https://zulip.aalto.fi/requests/>`_.
 
 .. note::
 
-    This service is still in beta. You might encounter some issues. If you
-    encounter issues, report them to
+    If you encounter issues, report them to
     `CS-IT <https://wiki.aalto.fi/display/CSdept/IT/>`_ or on #zulip-support
     at `scicomp.zulip.cs.aalto.fi <https://scicomp.zulip.cs.aalto.fi/>`_
 
     You can also give/discuss feedback, complaints or suggestions on
-    #zulip-feedback at
-    `scicomp.zulip.cs.aalto.fi <https://scicomp.zulip.cs.aalto.fi/>`_
+    #zulip-feedback at `scicomp.zulip.cs.aalto.fi <https://scicomp.zulip.cs.aalto.fi/>`_
 
 .. note::
 
@@ -203,8 +198,8 @@ suggestions for you, based on what other teachers have learned.
 
 * Create your channels ("streams") before your students join, and make
   the important ones default streams (this is done under "Manage
-  organization"), so that everyone will be subscribed (the "join
-  stream" is not obvious once you get to hundreds of people!)
+  organization"), so that everyone will be subscribed (since peolpe
+  will always forget to join streams).
 
   * If you do create a new default stream later, use the "clone
     subscribers" option to clone from another default stream, so that
@@ -229,8 +224,7 @@ suggestions for you, based on what other teachers have learned.
 * If you want a Q&A forum, make a stream called ``#questions``, or
   smaller streams for specific topics, and direct students there.
 
-  * Note: there is default support for "resolving a topic" with a
-    check mark that is coming in the next Zulip version.
+  * You can click the check mark by a topic to mark it as resolved.
 
   * Remind students to make a *new topic* for each new question.  This
     enables good follow-up via "Recent topics"
@@ -239,15 +233,6 @@ suggestions for you, based on what other teachers have learned.
     edit the message and change the topic (change topic for "this
     message and all later messages").  Then, you keep questions
     organized, findable, and trackable.
-
-  * You can use the "forum bot"
-    (https://github.com/AaltoSciComp/zulip-forum-bot).  This is still
-    a work in progress we have, but the basic idea is that you react
-    to a message with ``check_mark`` (✔), and then the topic gets
-    renamed to include "✔" at the beginning, so you can clearly
-    identify answered and unanswered questions in the "Recent topics"
-    view.  We will add more features as people request.  Please ask
-    our help when deploying bots.
 
   * If you don't want to be answering questions in private message
     (who does?... it leads to duplicate work), make a clear policy on

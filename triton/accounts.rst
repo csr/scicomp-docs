@@ -19,34 +19,83 @@ request the account.
 
 A few prerequisites:
 
--  You must have valid Aalto account
--  You must accept :doc:`Triton usage
-   policies <usagepolicy>`, including the data and privacy
-   policies.
--  Also tell us your department/school in your account creation
-   request.
--  You should have enough background to use Triton well, including
-   Linux skills.  Read
-   `hands-on scientific computing
-   <https://hands-on.coderefinery.org/>`__, and you
-   should know A ("Basics"), C ("Linux"), and D ("HPC") well.  Also
-   see the :ref:`Triton tutorials <tutorials>`.
+- You must :doc:`check the intended use cases and agree with the
+  Triton usage policies <usagepolicy>`, including the data and
+  privacy policies.
+- You must learn how to use a computer cluster properly.  At minimum,
+  read the :ref:`Triton tutorials <tutorials>` relevant to your uses
+  (scanning all tutorials if it is new to you).  Also, you might want
+  to read `hands-on scientific computing
+  <https://hands-on.coderefinery.org/>`__, and you should know A
+  ("Basics"), C ("Linux"), and D ("HPC") well.
+- You must have valid Aalto account.
+- Also tell us your department/school in your account creation
+  request.
 
-Accounts are for:
+.. _triton-accounts-are-for:
 
-- Researchers (as in, affiliated with a research PI in any way).
-  Please tell us who your supervisor is in your account request.
-- Students coming to one of our :doc:`Scientific Computing in Practice
-  courses </training/scip/index>` which uses Triton.  You will be specifically
-  told if this is the case
-- Other students not doing research needing computational
-  facilities should check out our :doc:`introduction for students
-  <../aalto/welcomestudents>`.  **This includes most student
-  projects as part of courses, unless you are effectively joining a
-  research group to do a project.**
+Account eligibility checklist (:doc:`see details <usagepolicy>`):
 
-You know that you have Triton access if you are in the ``triton-users``
-group at Aalto: ``groups`` shows this on Aalto linux machines.
+- **Research = yes**, for which a research supervisor can take
+  responsibility. (Please tell us who your research supervisor is in your
+  account request: someone Professer/Lecturer/Staff Scientist level.
+  Not postdoc, doctoral researcher, etc.).
+
+  - **Yes: for use in research work** (scholarly publications, datasets,
+    research software, theses, etc.) by anyone affiliated with a
+    research PI in any way.
+
+    - ...   Triton should be :doc:`acknowledged
+      and linked in ACRIS <acknowledgingtriton>`.
+
+  - **Yes: research theses (PhD, Masters, Bachelors)**.
+    However, literature review/non-research theses shouldn't use
+    Triton (though these shouldn't have a need for Triton).  These
+    should also be acknowledged in ACRIS.
+  - **A thesis at a company** doesn't necessarily disqualify Triton use,
+    but Triton should be used for the relevant research that will be
+    in the thesis, not other company work.
+
+- **Possible: Other minor staff use**
+
+  - For example, testing computational methods, supporting other
+    research, or simple usage of computational tools.  However, Triton
+    isn't designed as an operative environment and has no service
+    guarantees.
+
+- **No: study projects**
+
+  - There are other resources for this, see
+    :doc:`/aalto/welcomestudents`.
+  - **Yes: study projects as part of a research group.**  If you, a
+    student, essentially takes part in a research group to do a study
+    project, this is allowed. (It counts as research, and using Triton
+    is normal in this case.)
+
+    - (The research supervisor would evaluate this): For example, your
+      work will guide future research directions.  Your work may lead to
+      a publication someday, even if not an active part of this project.
+      The project comes from research ideas.
+
+    - You should be clear about your situation in your request and indicate
+      *research* supervisor (Professer/Lecturer level, not course
+      instructor or thesis course supervisor).  The supervisor should
+      respond to an email confirming the account.
+
+- **Yes:** Students coming to one of our :doc:`Scientific Computing in
+  Practice courses </training/scip/index>` which uses Triton. You will
+  be specifically told if this is the case.
+
+Visitors, students (non-employed), and teaching assistant job titles
+will have a confirmation requested from their research supervisor
+before the account is created (you supervisor will have to reply
+"yes", you can remind them to read their email and answer).  Others
+will have their research supervisor cc:ed in the account creation
+message.
+
+You know that you have Triton access if you are in the
+``triton-users`` group at Aalto: The ``groups`` command shows this on
+Aalto linux machines.
 
 
 

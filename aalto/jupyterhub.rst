@@ -1,6 +1,5 @@
-==========
-JupyterHub
-==========
+JupyterHub (jupyter.cs)
+=======================
 
 .. note::
 
@@ -9,6 +8,13 @@ JupyterHub
    JupyterHub for research is documented at
    :doc:`../triton/apps/jupyter`.
 
+.. admonition:: NBGrader in JupyterLab is the default (2023 Autumn)
+   :class: important
+
+    `JupyterLab <https://jupyterlab.readthedocs.io/en/stable/>`__ interface
+    is now available and is the default option for new course
+    servers.  :doc:`jupyterhub/nbgrader-jupyterlab` tells more about
+    using it.  You can access nbgrader from the JupyterLab menu.
 
 https://jupyter.cs.aalto.fi is a JupyterHub installation for teaching
 and light usage.  Anyone at Aalto may use this for generic light
@@ -19,7 +25,7 @@ computing.
 
 
 Basic usage
-===========
+-----------
 
 Log in with any valid Aalto account.  Our environment may be used for light
 computing and programming by anyone.
@@ -64,7 +70,7 @@ terminal - this is a great place to learn something new.
 
 
 Terms of use
-============
+------------
 
 This service must be used according to the general IT usage policy of
 Aalto university (including no unlawful purposes).  It should only be
@@ -81,23 +87,28 @@ computing, see :doc:`../triton/index`.
 
 
 Courses and assignments
-=======================
+-----------------------
+
+New: nbgrader in JupyterLab instructions: :doc:`jupyterhub/nbgrader-jupyterlab`
 
 Some courses may use the `nbgrader
 <https://nbgrader.readthedocs.io/en/stable/>`__ system to give and
-grade assignments.  These courses have special entries in the list.
+grade assignments. These courses have special entries in the list.
 If you are a student in such a course, you will have a special
 environment for that course.  Your instructor may customize the
 environment, or it may one of our generic environments.
 
-If your course is using **nbgrader**, there are some built-in features
+If your course is using Jupyter with **nbgrader**, there are some built-in features
 for dealing with assignments.  Under the **Assignment list** tab, you
 can see the assignments for your course (only the course you selected
 when starting your notebook server).  You can fetch assignments to
 work on them - they are then copied to your personal ``/notebooks``
 directory.  You can edit the assignments there - fill out the
 solutions and validate them.  Once you are done, you can submit them
-from the same assignment list.
+from the same assignment list. We have a :doc:`short tutorial that
+walks through this process using the new
+JupyterLab interface <jupyterhub/nbgrader-jupyterlab>`.
+
 
 A course may give you access to a ``/coursedata`` folder with any
 course-specific data.
@@ -118,7 +129,7 @@ sometimes.
 
 
 Instructors
-===========
+-----------
 
 .. toctree::
    :hidden:
@@ -131,31 +142,27 @@ This service may be either used as general light computing for your
 students, or using nbgrader to release and collect assignments.
 
 
-Privacy policy
-==============
+Privacy notice
+--------------
 
-This system is managed by Aalto CS-IT.  We do not store separate
-accounts or user data beyond a minimal database of usernames and
-technical logs of notebooks which are periodically removed (this is
-separate from your data).  Your actual data is yours only and you are
-responsible for it.  We do not access your data, but when necessary
-for the operation of the system, but we use and may look at file
-metadata such as permissions, timestamp, filename (``stat filename``).
-Your ``/notebooks`` directory may be deleted once it has been
-inactive for one year, and at the latest once your Aalto home
-directory is removed (after your account expires).  Some courses will
-use the ``feedback/`` directory to return assignments to you.
+**Summary:** This system is managed by Aalto CS-IT.  We do not store
+separate accounts or user data beyond a minimal database of usernames
+and technical logs of notebooks which are periodically removed (this
+is separate from your data).  The actual data (your data, course data)
+is controlled by you and the course instructor respectively.  We do
+not access data, but when necessary for the operation of the system,
+but we may see file metadata (``stat FILENAME``) such as permissions,
+size, timestamp and filename.  Your personal data may be deleted once
+it has been inactive for one year, and at the latest once your Aalto
+home directory is removed (after your Aalto account expires).  Course
+data is controlled by course instructors.
 
-The use of your own data and submission of data to your course
-instructors is the responsibility of you and the instructors.
-
-See :doc:`the separate privacy policy document <jupyterhub-privacy>`
-for longer, less useful information.
-
+See :doc:`the separate privacy policy document <jupyterhub/privacy-notice>`
+for more details.
 
 
 FAQ and bugs
-============
+------------
 
 * **I started the wrong environment and can't get back to the course
   selection list.**  In JupyterLab, use the menu bar, "Hub->Control
@@ -166,13 +173,7 @@ FAQ and bugs
 * **Is JupyterLab available?** Yes, and it's nice.  There are two
   general use instances that are actually the same, the only
   difference is one starts JupyterLab by default and one starts
-  classic notebooks by default.  Course environments always use
-  classic notebooks, because the nbgrader assignment list only works
-  there.  To switch back and forth in any notebook server, change
-  ``/tree`` in the URL to ``/lab/tree``.  If you want to use
-  JupyterLab with a course's files, first start that course's server,
-  get the assignments, then change to JupyterLab (change the URL, or
-  stop and restart your server).
+  classic notebooks by default.
 
 * **Can I login with a shell?**  Run a new terminal within the
   notebook interface.
@@ -271,9 +272,9 @@ FAQ and bugs
 
 
 More info
-=========
+---------
 
-Students, your first point of contact for course-related matters and
+Students, your first point of contact for course-related or Jupyter matters and
 bugs with JuptyerHub should be your instructors, not us.  They will
 answer questions and send the relevant ones to us.  But, if you can
 actively help with other things, feel free to comment via Github
@@ -288,7 +289,7 @@ Students and others who have difficulty in usage outside of a course
 can contact CS-IT via the :ref:`guru <jupyterhub-instructors-more-info>`
 alias.
 
-Notebooks are *not* an end-all solution: for an entertaining look at
+Jupyter notebooks are *not* an end-all solution: for an entertaining look at
 some problems, see `"I don't like notebooks" by Joel Grus
 <https://docs.google.com/presentation/d/1n2RlMdmv1p25Xy5thJUhkKGvjtV-dkAIsUXP-AL4ffI>`__
 or less humorous :doc:`pitfalls of Jupyter notebooks

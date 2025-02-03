@@ -1,5 +1,5 @@
-How we work
-===========
+Starting a project with us
+==========================
 
 This page is mostly focused on how long-term scheduled projects, which
 are funded by the research groups themselves, work.
@@ -9,6 +9,8 @@ are funded by the research groups themselves, work.
 For short-term code review tasks, come to any of our :doc:`garage
 sessions </help/garage>` and we will immediately take a look.
 
+
+
 Types of service
 ----------------
 
@@ -16,22 +18,17 @@ Types of service
   scheduled in terms of FTE percentage over months.  This is often
   directly as salary from some grant, as a researcher would be.
 
-* **Medium-term** service deal with jobs scheduled in days.  For
-  simplicity, these are often fee-for-service paid internally from
-  basic funding.  Depending on your unit, they may also be free (paid
-  by unit basic funding).  *This is not worked out yet - check back
-  for details*
+* **Medium-term** service deal with jobs scheduled in days.  This is
+  mostly funded by basic funding from the member units.
 
-* **Short-term** could be a code review at one of our :doc:`garages
-  </help/garage>` or a few hours of work.  This is generally free
-  (paid by unit basic funding).
+* **Short-term** usually consists of support at one of our
+  :doc:`garages </help/garage>` or a few hours of work.  This is
+  generally free (paid by unit basic funding).
+
 
 
 Beginning
 ---------
-
-Check if it is a type of task that we can do: best to ask us (TODO:
-improve this description later)
 
 To actually make a request for support, see :doc:`request`.
 
@@ -59,7 +56,6 @@ job helping you.
   <https://drive.google.com/drive/folders/0BzlGN0F6ew2hc0hGVXVTaGZwQjQ>`__.
 * Final outputs, location, publication.
 * Time frame and schedule flexibility.
-
 
 
 What we can accomplish
@@ -101,48 +97,46 @@ needs.  Together, we will think about these questions:
     specialists (RSEs or similar - us?).
 
 
-
 Scheduling and planning
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 RSEs will be assigned based on discussion between the researchers,
 RSEs, and Aalto Scientific Computing (the RSE group).  Your agreement is
-with the RSE group, so your RSEs may change (even though we'll try to
-avoid this).
+with the RSE group, so your RSEs may change if there is a need (even
+though we'll try to avoid this).
 
-We can never promise specific results in a specific time: we always
-agree based on a certain amount of time.  As you can expect, projects
-can sometimes take far longer than expected, so we try to budget
-plenty of buffer into projects to accomplish the mandatory tasks.
+We will work with you to give a good view of how long we take
+something will take and any risks (as in, what if it turns out to not
+be possible?)  We can't promise specific results in a specific time
+(no one can), but we do try to give the best estimates we can.  This
+planning includes any buffer and backup plans.
 
-Our exact scheduling system is not yet decided: if you start now, you
-help design the system.
+It may take some time to fit your project into our schedule (of course
+this also depends on the urgency.)  We realizes that your schedule is
+also uncertain, but we hope that you can find time to work with us
+once we start, since otherwise we may move on and requeue your
+project.
+
+If we schedule a project but lose contact with you (no responses to
+our messages), we'll assume you are busy with other things and may
+re-add the project to the queue, and we'll need to find a new time in
+the schedule.  Please let us know if you don't have time, we
+understand the busyness of research.
+
+A project doesn't have to be done "all at once" but can be interleaved
+with your own work schedule.
+
+
 
 Costs and time tracking
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Right now, most service is free for all users within the School of
-Science.
+We track the time we spend and record it to your project.
 
-TODO: future updates
-
-
-Funding practicalities
-~~~~~~~~~~~~~~~~~~~~~~
-
-Right now, most service is free to all researchers in member
-departments.  (Member departments can be seen on our :doc:`front page
-<index>`.)  Longer-term projects can be funded by
-internal invoicing or directly hiring our RSE onto your grant, the
-same as salary of any researcher would work.
-
-TODO: This will be developed as we begin the program.  See above for a
-description.
 
 
 Getting started
 ---------------
-
 
 Version control
 ~~~~~~~~~~~~~~~

@@ -2,9 +2,7 @@
 Data storage
 ============
 
-.. admonition:: Video
-
-   `Watch this in the Winter Kickstart 2021 course <https://www.youtube.com/watch?v=guZYMgwdP4Q&list=PLZLVmS9rf3nN_tMPgqoUQac9bTjZw8JYc&index=10>`__
+.. include:: /triton/ref/videos.rst
 
 These days, computing is as much (or more) about data than the actual
 computing power.  And data is more than number of petabytes: it is so
@@ -15,26 +13,40 @@ In this tutorial, we go over places to store data on Triton and how to
 choose between them.  The
 :doc:`next tutorial <remotedata>` tells how to access it remotely.
 
-.. admonition:: Cheatsheet
+.. admonition:: Abstract
 
    * See the :doc:`../ref/index`
 
-   * We are a standard Linux filesystem
+   * There are many places to store files since they all make a
+     different trade-off of speed, size, and backups.
+
+   * We recommend scratch / $WRKDIR (below) for most cases.
+
+   * We are a standard Linux cluster with these options:
 
      * ``$HOME`` = ``/home/$USER``: 10GB, backed up, not made larger
      * Scratch is large but not backed up:
 
        * ``$WRKDIR`` = ``/scratch/work/$USER``: Personal work directory
        * ``/scratch/DEPARTMENT/NAME/``: Group-based shared directories
-         (recommended for most work, group leaders can request them)
+         (recommended for most work)
 
-     * ``/tmp``: temporary directory, pre-user mounted in jobs and
-       automatically cleaned up.
-     * ``/l/``: local persistent storage on some group servers
-     * ``$XDG_RUNTIME_DIR``: ramfs on login node
+     * ``/tmp``: temporary local disk space, pre-user mounted in jobs and
+       automatically cleaned up. Only on nodes with disks
+       (``--constraint=localdisk``), otherwise it's ramfs
+     * ``/dev/shm``: ramfs, in-memory file storage
 
    * See :doc:`remotedata` for how to transfer and access the data
      from other computers.
+
+.. figure:: https://raw.githubusercontent.com/AaltoSciComp/aaltoscicomp-graphics/master/figures/cluster-schematic/cluster-schematic-storage.png
+   :alt: Schematic of cluster with current discussion points highlighted; see caption or rest of lesson.
+
+   We are now looking at the data storage of a cluster.
+
+
+.. highlight:: console
+
 
 
 Basics
@@ -50,10 +62,6 @@ data), and special places for scratch during computations (**local
 disks**).  At Aalto, there is **aalto home**, **project**, and
 **archive** directories which, unlike Triton, are backed up but don't
 scale to the size of Triton.
-
-A file consists of its contents and metadata.  The metadata is information
-like user, group, timestamps, permissions.  To view metadata, use ``ls
--l`` or ``stat``.
 
 Filesystem performance can be measured by both IOPS (input-output
 operations per second) and stream I/O speed.  ``/usr/bin/time -v`` can
@@ -93,7 +101,7 @@ The following factors are useful to consider:
    you read all at once, scratch is fine. But if there are many small
    files or random access, local disks may help.
 -  Do you write log files/checkpoints more often than is needed?
--  Some programs use local disk as swap-space. Only turn on if you know
+-  Some programs use local disk as swap-space. Only turn it on if you know
    it is reasonable.
 
 There's a checklist in the :doc:`storage details page
@@ -108,13 +116,15 @@ Available data storage options
 ------------------------------
 
 Each storage location has different sizes, speed, types of backups,
-and availability.  You need to balance between these.
+and availability.  You need to balance between these.  Most routine
+work should go into scratch (group directories) or work (personal).
+Small configuration and similar can go into your home directory.
 
 .. include:: ../ref/storage.rst
 
 Home directories
 ~~~~~~~~~~~~~~~~
-The place you start when you log in.  Home directory should be used for init files,
+``/home/$USER``: The place you start when you log in.  Home directory should be used for init files,
 small config files, etc.  It is however not suitable for storing calculation data.
 Home directories are backed up daily.  You usually want to use scratch instead.
 
@@ -126,9 +136,8 @@ reliable against hardware failures (RAID6, redundant servers), but
 *not* safe against human error..  It is
 shared on all nodes, and has very fast access.  It is divided into two
 parts, **scratch (by groups)** and **work (per-user)**.  In general, always
-change to ``$WRKDIR`` or a group ``scratch`` directory when you first
-log in and start doing work. (note: home and work may be deleted six
-months after your account expires: use a group-based space instead).
+change to ``$WRKDIR`` (``/scratch/work/$USER``) or a project ``/scratch/DEPT/PROJECT/`` directory when you first
+log in and start doing work.
 
 Lustre separates metadata and contents onto separate object and
 metadata servers.  This allows fast access to large files, but induces
@@ -139,32 +148,35 @@ See :doc:`../usage/lustre`
 
 Local disks
 ~~~~~~~~~~~
-Local disks are on each node separately.  It is used for the fastest I/Os
-with single-node jobs and is cleaned up after job is finished.  Since 2019,
-things have gotten a bit more complicated given that our newest (skl) nodes
-don't have local disks.  If you want to ensure you have local storage,
-submit your job with ``--gres=spindle``.
+``/tmp``: Local disks are on each node separately.  It is used for the fastest I/Os
+with single-node jobs and is cleaned up after job is finished.  Not
+all nodes have them: some don't have any disks, and ``/tmp`` is also
+in-memory ramfs.  If you want to ensure you have local storage,
+submit your job with ``--constraint=localdisk``.
 
 See the :doc:`Compute
 node local drives <../usage/localstorage>` page for further details and script
 examples.
 
+.. _ramfs-description:
+
 ramfs - fast and highly temporary storage
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**On login nodes only**,
-``$XDG_RUNTIME_DIR`` is a ramfs, which means that it looks like files
+``/dev/shm`` is a ramfs, which means that it looks like files
 but is stored only in memory.  Because of this, it is extremely fast,
 but has no persistence whatsoever.  Use it if you have to make small
 temporary files that don't need to last long.  Note that this is no
 different than just holding the data in memory, if you can hold in
 memory that's better.
 
+ramfs counts against the memory of your job or user session.
+
 Other Aalto data storage locations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Aalto has other non-Triton data storage locations available.  See
-:doc:`/aalto/aaltostorage` and :doc:`/aalto/aaltodata` for more info.
+:doc:`/data/index` for more info.
 
 
 
@@ -200,6 +212,14 @@ page for a solution.
 
 
 
+Remote access
+-------------
+
+The next tutorial, :doc:`remotedata`, covers accessing the data from
+your own computer.
+
+
+
 Exercises
 ---------
 
@@ -211,7 +231,7 @@ time to review your local guides to see how they are adapted to your site.
 .. exercise:: Storage-1: Review data storage locations
 
    (Optional) Look at the list of data storage locations above.  Also look at the
-   :doc:`/aalto/aaltostorage`.  Which do you
+   :doc:`/data/aalto-details`.  Which do you
    think are suitable for your work?  Do you need to share with
    others?
 
@@ -227,7 +247,7 @@ time to review your local guides to see how they are adapted to your site.
 
    a) A job is submitted but fails with no output or messages.
 
-   b) I can't start a Jupyter server on jupyter.triton.
+   b) I can't start a Jupyter server on ondemand.triton.aalto.fi.
 
    c) Some files are randomly empty.  Or the file had content, I tried
       to save it again, and now it's empty!
@@ -242,6 +262,13 @@ time to review your local guides to see how they are adapted to your site.
 
    g) I can't install my own Python/R/etc libraries.
 
+   .. solution::
+
+      All of these can be caused by exceeding the quota.
+
+      (don't worry, "can't log in" doesn't apply to basic ssh login,
+      so you can always still fix it yourself)
+
 **About filesystem performance:**
 
 ``strace`` is a command which tracks **system calls**, basically the
@@ -251,12 +278,19 @@ used as a rudimentary way to see how much I/O load there is.
 .. exercise:: Storage-4: strace and I/O operations
 
    Use ``strace -c`` to compare the number of system calls in ``ls``,
-   ``ls -l``, ``ls --no-color``, and ``ls --color`` on a directory
-   with many files.  On Triton, you can use the directory
-   ``/scratch/scip/lustre_2017/many-files/`` as a place with many
-   files in it.  How many system calls per file were there for each
-   option?
+   ``ls -l``,  on a directory with many files.  On Triton, you can use 
+   the directory ``/scratch/scip/lustre_2017/many-files/`` as a place 
+   with many files in it.  How many system calls per file were there 
+   for each option?
 
+   .. solution::
+   
+      Running ``strace -c ls /scratch/scip/lustre_2017/many-files/`` shows you 
+      that ls took 171 system calls to get the information. By comparison, 
+      ``ls -l`` takes 5210 system calls due to all the additional information 
+      it gives. This might not matter in normal situation, but these system calls 
+      can quickly pile up if used in a script. 
+   
 .. exercise:: Storage-5: strace and time
 
    Using ``strace -c``, compare the times of ``find`` and ``lfs find``

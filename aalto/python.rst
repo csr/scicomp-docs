@@ -1,11 +1,41 @@
-======
-Python
-======
+=====================
+Python on Aalto Linux
+=====================
 
-The scientific python ecosystem is also available on Aalto Linux workstations,
+The scientific python ecosystem is also available on Aalto Linux
+workstations (desktops),
 including the anaconda (Python 3) and anaconda2 (Python 2) modules providing
 the Anaconda python distribution. For a more indepth description see the
 generic `python page under scientific computing docs </scicomp/python>`.
+
+On Aalto Linux Laptops, these instructions don't work.  Instead, we'd
+recommend installing Anaconda or Miniconda yourself and then you can
+manage packages via environments.  You can also install Python
+packages through the package manager, but that can have problems with
+installing your own libraries if not managed carefully.
+
+.. highlight:: console
+
+
+Anaconda on Aalto Linux
+=======================
+
+You can mostly use Python like normal - see :doc:`/scicomp/python`.
+
+To create your own anaconda environments, first load the Anaconda module::
+
+   $ module load anaconda
+
+then you get the ``conda`` command.  If you get an error such as::
+
+  NotWritableError: The current user does not have write permissions to a required path.
+  path: /m/work/modules/automatic/anaconda/envs/aalto-ubuntu1804-generic/software/anaconda/2020-04-tf2/1b2b24f2/pkgs/cache/18414ddb.json
+
+Try the following to solve it (this prevents conda from trying to
+store its downloaded files in the shared directory)::
+
+   $ conda config --prepend pkgs_dirs ~/.conda/pkgs
+
 
 
 The "neuroimaging" environment
@@ -21,12 +51,12 @@ To use it on Aalto Ubuntu workstations and VDI::
     $ ml anaconda3
     $ source activate neuroimaging
 
-To use it on Triton::
+To use it on the new Triton (as of May 2024)::
 
     $ ml purge
-    $ ml neuroimaging
+    $ ml neuroimaging-env
 
-To see the full list of packages what are installed in the environment, use::
+Note that the module name has changed on the new Triton, to make it clearer that this is *not* the same neuroimaging environment as it was in the old Triton. If you need exactly the same old environments, please get in touch. **This it not working anymore:** To see the full list of packages what are installed in the environment, use::
 
     $ conda list
 
